@@ -5,12 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>marianodev | Fabrício Mariano — Criação de Sites de Alta Performance</title>
 
-    <!-- Favicon Oficial M/D em Alta Nitidez -->
+    <!-- Favicon Oficial M/D em Alta Resolução -->
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-20 0 552 512'%3E%3Crect x='112' y='56' width='288' height='400' rx='105' fill='%230D0D0D' stroke='%23CE1141' stroke-width='6'/%3E%3Cpath d='M 12 376 L 12 176 L 76 176 L 146 312 L 216 176 L 280 176 L 280 376 L 222 376 L 222 258 L 164 376 L 128 376 L 70 258 L 70 376 Z' fill='%23FF0A54'/%3E%3Cpolygon points='234,396 264,136 294,136 264,396' fill='%23FFFFFF'/%3E%3Cpath d='M 304 176 L 416 176 C 466 176 500 216 500 276 C 500 336 466 376 416 376 L 304 376 Z M 360 228 L 360 324 L 410 324 C 438 324 446 304 446 276 C 446 248 438 228 410 228 Z' fill='%23FF0A54'/%3E%3C/svg%3E">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Syne:wght@600;700;800;900&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Syne:wght@700;800;900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
 
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -19,27 +19,28 @@
                 extend: {
                     colors: {
                         cream: {
-                            50: '#FDFBF7',
+                            50: '#FDFCF9',
                             100: '#FAF6EE',
-                            200: '#F4EFE6',
-                            300: '#E9DFCFCF',
-                            card: '#FAF5EA',
+                            200: '#F2EBDC',
+                            300: '#E5DCC9',
+                            card: '#FAF7F0',
                             DEFAULT: '#F5EFE3'
                         },
                         olive: {
-                            100: '#E2E6DF',
-                            200: '#C2CDC0',
-                            300: '#94A390',
-                            400: '#697B65',
-                            500: '#485844',
+                            100: '#E3E7E1',
+                            200: '#C5CDC3',
+                            300: '#99A895',
+                            400: '#6D7F69',
+                            500: '#4A5B46',
                             DEFAULT: '#394635',
-                            700: '#263023',
-                            800: '#1C241A',
-                            900: '#121711'
+                            700: '#283425',
+                            800: '#1D261B',
+                            900: '#131A12',
+                            950: '#0C110B'
                         },
                         bulls: {
                             red: '#CE1141',
-                            redDark: '#A50D33',
+                            redDark: '#A30B31',
                             redGlow: 'rgba(206, 17, 65, 0.25)',
                             black: '#121212',
                             coal: '#1E1E1E'
@@ -52,7 +53,7 @@
                     },
                     animation: {
                         'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-                        'ticker': 'ticker 24s linear infinite'
+                        'ticker': 'ticker 26s linear infinite'
                     },
                     keyframes: {
                         ticker: {
@@ -68,35 +69,83 @@
     <style>
         body {
             background-color: #FAF6EE;
-            color: #232B20;
+            color: #1A2118;
             font-family: 'Plus Jakarta Sans', sans-serif;
             overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
         }
 
         .grain-bg {
-            background-image: radial-gradient(#394635 0.7px, transparent 0.7px);
+            background-image: radial-gradient(#394635 0.75px, transparent 0.75px);
             background-size: 24px 24px;
-            opacity: 0.04;
+            opacity: 0.05;
         }
 
         .custom-card-shadow {
-            box-shadow: 0 12px 30px -10px rgba(28, 36, 26, 0.08), 0 0 0 1px rgba(72, 88, 68, 0.12);
+            box-shadow: 0 14px 34px -10px rgba(18, 26, 17, 0.09), 0 0 0 1px rgba(57, 70, 53, 0.12);
         }
 
         .glass-nav {
-            background: rgba(250, 246, 238, 0.94);
+            background: rgba(250, 246, 238, 0.95);
             backdrop-filter: blur(14px);
             -webkit-backdrop-filter: blur(14px);
+        }
+
+        /* Regras rigorosas de impressão para gerar exatamente 3 páginas A4 */
+        @media print {
+            body {
+                background: white !important;
+                color: #121212 !important;
+            }
+            body > *:not(#pdfModal) {
+                display: none !important;
+            }
+            #pdfModal {
+                position: static !important;
+                inset: auto !important;
+                background: white !important;
+                padding: 0 !important;
+                margin: 0 !important;
+                overflow: visible !important;
+                display: block !important;
+            }
+            #pdfModalContent {
+                position: static !important;
+                border: none !important;
+                box-shadow: none !important;
+                padding: 0 !important;
+                max-width: 100% !important;
+                max-height: none !important;
+                overflow: visible !important;
+                background: white !important;
+            }
+            .pdf-a4-page {
+                page-break-after: always !important;
+                break-after: page !important;
+                min-height: 270mm !important;
+                padding: 18mm 16mm !important;
+                margin: 0 !important;
+                border: 1px solid #ddd !important;
+                box-shadow: none !important;
+                background: white !important;
+            }
+            .pdf-a4-page:last-child {
+                page-break-after: auto !important;
+                break-after: auto !important;
+            }
+            .no-print {
+                display: none !important;
+            }
         }
 
         ::-webkit-scrollbar {
             width: 8px;
         }
         ::-webkit-scrollbar-track {
-            background: #F4EFE6;
+            background: #F2EBDC;
         }
         ::-webkit-scrollbar-thumb {
-            background: #485844;
+            background: #4A5B46;
             border-radius: 6px;
         }
         ::-webkit-scrollbar-thumb:hover {
@@ -109,11 +158,9 @@
 
     <div class="fixed inset-0 pointer-events-none grain-bg z-0"></div>
 
-    <!-- Cabeçalho com Logo Nítida e Proporcional -->
-    <header class="fixed top-0 left-0 right-0 z-50 glass-nav border-b border-olive-200/50 transition-all duration-300">
+    <header class="fixed top-0 left-0 right-0 z-50 glass-nav border-b border-olive-200/60 transition-all duration-300">
         <div class="max-w-6xl mx-auto px-5 sm:px-6 h-16 sm:h-20 flex items-center justify-between">
             <a href="#" class="flex items-center gap-3 group">
-                <!-- Emblema M/D Oficial em SVG -->
                 <div class="w-12 sm:w-14 h-10 sm:h-11 flex-shrink-0 flex items-center justify-center group-hover:scale-105 transition-transform">
                     <svg viewBox="-20 0 552 512" class="w-full h-full drop-shadow-sm" shape-rendering="geometricPrecision">
                         <rect x="112" y="56" width="288" height="400" rx="105" fill="#0D0D0D" stroke="#CE1141" stroke-width="6"/>
@@ -123,93 +170,93 @@
                     </svg>
                 </div>
                 <div>
-                    <div class="flex items-center gap-1.5">
-                        <span class="font-display font-extrabold text-base sm:text-lg tracking-tight text-olive-900 leading-none">marianodev</span>
+                    <div class="flex items-center gap-2">
+                        <span class="font-display font-extrabold text-lg sm:text-xl tracking-tight text-olive-950 leading-none">marianodev</span>
                         <span class="w-2 h-2 rounded-full bg-bulls-red animate-ping"></span>
                     </div>
-                    <span class="text-[10px] sm:text-[11px] font-mono text-olive-600 block mt-0.5 tracking-wider">Fabrício Mariano • Volta Redonda, RJ</span>
+                    <span class="text-xs font-mono text-olive-700 block mt-1 font-semibold">Fabrício Mariano • Volta Redonda, RJ</span>
                 </div>
             </a>
 
             <!-- Menu Desktop -->
-            <nav class="hidden md:flex items-center gap-6 text-sm font-semibold text-olive-700">
-                <a href="#sobre" class="hover:text-bulls-red transition-colors">Sobre Mim</a>
-                <a href="#nichos" class="hover:text-bulls-red transition-colors">Para Quem Crio</a>
-                <a href="#servicos" class="hover:text-bulls-red transition-colors">O que Faço</a>
-                <a href="#projetos" class="hover:text-bulls-red transition-colors">Projetos & Cases</a>
+            <nav class="hidden md:flex items-center gap-6 text-sm font-bold text-olive-800">
+                <a href="#sobre" class="hover:text-bulls-red transition-colors">Sobre</a>
+                <a href="#nichos" class="hover:text-bulls-red transition-colors">Segmentos</a>
+                <a href="#servicos" class="hover:text-bulls-red transition-colors">Serviços</a>
+                <a href="#projetos" class="hover:text-bulls-red transition-colors">Projetos</a>
                 <a href="#orcamento-calc" class="hover:text-bulls-red transition-colors">Simulador</a>
-                <button onclick="openPDFModal()" class="px-3.5 py-1.5 rounded-full border border-olive-300 text-olive-800 hover:border-bulls-red hover:text-bulls-red text-xs font-mono font-bold transition-all flex items-center gap-1.5">
-                    <span>📄 Baixar PDF</span>
+                <button onclick="openPDFModal()" class="px-4 py-2 rounded-full border-2 border-olive-400 text-olive-900 hover:border-bulls-red hover:text-bulls-red text-xs font-mono font-bold transition-all flex items-center gap-1.5 shadow-sm bg-white/70">
+                    <span>📄 Dossiê PDF (3 Págs)</span>
                 </button>
                 <a href="https://wa.me/5524999629761?text=Ol%C3%A1%20Fabr%C3%ADcio%20(@marianodev),%20vi%20seu%20portfolio%20e%20gostaria%20de%20um%20or%C3%A7amento!" target="_blank" rel="noopener noreferrer" class="px-5 py-2.5 rounded-full bg-olive text-cream-50 font-bold hover:bg-bulls-red transition-all duration-300 shadow-md flex items-center gap-2">
-                    <span>Falar no WhatsApp</span>
+                    <span>WhatsApp</span>
                     <span class="text-xs">↗</span>
                 </a>
             </nav>
 
             <!-- Botão Menu Mobile -->
-            <button id="mobileMenuBtn" aria-label="Abrir Navegação" class="md:hidden p-2 rounded-xl text-olive-800 hover:bg-cream-200 border border-olive-200/60">
+            <button id="mobileMenuBtn" aria-label="Abrir Navegação" class="md:hidden p-2.5 rounded-xl text-olive-900 hover:bg-cream-200 border border-olive-300">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 6h16M4 12h16m-7 6h7"></path>
                 </svg>
             </button>
         </div>
 
-        <!-- Dropdown Mobile -->
-        <div id="mobileMenu" class="hidden md:hidden bg-cream-50 border-b border-olive-200 px-6 py-6 space-y-4 shadow-xl">
-            <div class="flex items-center gap-2 text-xs font-mono text-bulls-red pb-2 border-b border-olive-200/50">
+        <!-- Menu Mobile -->
+        <div id="mobileMenu" class="hidden md:hidden bg-cream-50 border-b border-olive-300 px-6 py-5 space-y-3.5 shadow-2xl">
+            <div class="flex items-center gap-2 text-xs font-mono text-bulls-red pb-2 border-b border-olive-200 font-bold">
                 <span>📍 VOLTA REDONDA - RJ</span>
                 <span class="text-olive-400">•</span>
                 <span>DISPONÍVEL PARA PROJETOS</span>
             </div>
-            <a href="#sobre" class="block text-olive-800 font-bold py-1 mobile-link">Sobre Fabrício Mariano</a>
-            <a href="#nichos" class="block text-olive-800 font-bold py-1 mobile-link">Mercados Atendidos</a>
-            <a href="#servicos" class="block text-olive-800 font-bold py-1 mobile-link">O Que Faço</a>
-            <a href="#projetos" class="block text-olive-800 font-bold py-1 mobile-link">Projetos & Cases</a>
-            <a href="#orcamento-calc" class="block text-olive-800 font-bold py-1 mobile-link">Simular Orçamento</a>
-            <button onclick="openPDFModal()" class="w-full text-center py-2.5 rounded-xl border border-olive-300 text-olive-900 font-mono font-bold text-xs flex items-center justify-center gap-2">
-                <span>📄 Baixar Dossiê em PDF</span>
+            <a href="#sobre" class="block text-olive-950 font-bold py-1 mobile-link text-base">Sobre Fabrício Mariano</a>
+            <a href="#nichos" class="block text-olive-950 font-bold py-1 mobile-link text-base">Segmentos Atendidos</a>
+            <a href="#servicos" class="block text-olive-950 font-bold py-1 mobile-link text-base">Modelos de Sites</a>
+            <a href="#projetos" class="block text-olive-950 font-bold py-1 mobile-link text-base">Projetos & Cases</a>
+            <a href="#orcamento-calc" class="block text-olive-950 font-bold py-1 mobile-link text-base">Simular Orçamento</a>
+            <button onclick="openPDFModal()" class="w-full text-center py-3 rounded-xl border-2 border-olive-400 text-olive-950 font-mono font-bold text-xs flex items-center justify-center gap-2 bg-cream-100">
+                <span>📄 Abrir Dossiê em PDF (3 Páginas)</span>
             </button>
-            <a href="https://wa.me/5524999629761?text=Ol%C3%A1%20Fabr%C3%ADcio%20(@marianodev),%20vi%20seu%20portfolio%20e%20gostaria%20de%20um%20or%C3%A7amento!" target="_blank" rel="noopener noreferrer" class="block w-full text-center py-3 rounded-xl bg-bulls-red text-white font-bold shadow-md mobile-link">
-                Iniciar Conversa no WhatsApp
+            <a href="https://wa.me/5524999629761?text=Ol%C3%A1%20Fabr%C3%ADcio%20(@marianodev),%20vi%20seu%20portfolio%20e%20gostaria%20de%20um%20or%C3%A7amento!" target="_blank" rel="noopener noreferrer" class="block w-full text-center py-3.5 rounded-xl bg-bulls-red text-white font-bold shadow-md mobile-link">
+                Falar Diretamente no WhatsApp
             </a>
         </div>
     </header>
 
-    <!-- Letreiro Rotativo -->
-    <div class="relative z-20 pt-16 sm:pt-20 bg-bulls-black text-cream-100 overflow-hidden border-b border-bulls-red/40 py-1.5">
-        <div class="flex w-max animate-ticker items-center whitespace-nowrap text-[10px] font-mono uppercase tracking-widest gap-8 text-cream-200 font-medium">
-            <span class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-bulls-red"></span>📍 VOLTA REDONDA - RJ • BRASIL</span>
+    <!-- Letreiro de Destaque -->
+    <div class="relative z-20 pt-16 sm:pt-20 bg-bulls-black text-cream-100 overflow-hidden border-b border-bulls-red/50 py-2">
+        <div class="flex w-max animate-ticker items-center whitespace-nowrap text-xs font-mono uppercase tracking-widest gap-8 text-cream-100 font-bold">
+            <span class="flex items-center gap-2"><span class="w-2.5 h-2.5 rounded-full bg-bulls-red"></span>📍 VOLTA REDONDA - RJ • ATENDIMENTO A TODO O BRASIL</span>
             <span>★ SITES PARA QUALQUER NICHO DE MERCADO</span>
             <span>★ CLÍNICAS, MÉDICOS E PSICÓLOGOS</span>
             <span>★ ESTÉTICA, BELEZA E BEM-ESTAR</span>
             <span>★ RESTAURANTES E GASTRONOMIA</span>
-            <span>★ CRIADORES DE CONTEÚDO E CURSOS</span>
+            <span>★ INFLUENCIADORES E INFOPRODUTORES</span>
             <span>★ LOJAS DE PRODUTOS DE LIMPEZA</span>
-            <span>★ STREETWEAR E E-COMMERCE</span>
-            <span>★ PERFORMANCE & RESULTADO COMERCIAL</span>
+            <span>★ STREETWEAR E LOJAS DE ROUPAS</span>
+            <span>★ PERFORMANCE & CONVERSÃO EM VENDAS</span>
         </div>
     </div>
 
     <main class="relative z-10">
 
         <!-- Secção Hero com Apresentação e Fotografia Inteira -->
-        <section class="max-w-6xl mx-auto px-5 sm:px-6 pt-8 pb-12 md:pt-10 md:pb-14">
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-8 items-center">
+        <section class="max-w-6xl mx-auto px-5 sm:px-6 pt-10 pb-14 md:pt-14 md:pb-16">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
 
                 <!-- Apresentação & Proposta de Valor -->
                 <div class="lg:col-span-7">
-                    <div class="inline-flex flex-wrap items-center gap-2 px-3.5 py-1 rounded-full bg-olive-100/90 border border-olive-300 text-olive-800 text-xs font-semibold mb-3.5">
-                        <span class="relative flex h-2 w-2">
+                    <div class="inline-flex flex-wrap items-center gap-2 px-3.5 py-1.5 rounded-full bg-cream-200 border border-olive-300 text-olive-900 text-xs font-bold mb-4 shadow-sm">
+                        <span class="relative flex h-2.5 w-2.5">
                             <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-bulls-red opacity-75"></span>
-                            <span class="relative inline-flex rounded-full h-2 w-2 bg-bulls-red"></span>
+                            <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-bulls-red"></span>
                         </span>
                         <span>Volta Redonda - RJ</span>
                         <span class="text-olive-400">|</span>
-                        <span class="text-olive-700">Atendimento a Todo o Brasil</span>
+                        <span class="text-olive-700">Projetos para Todo o Brasil</span>
                     </div>
 
-                    <h1 class="font-display font-black text-3xl sm:text-4xl md:text-[2.65rem] text-olive-900 tracking-tight leading-[1.15] mb-3.5">
+                    <h1 class="font-display font-black text-3xl sm:text-4xl md:text-5xl text-olive-950 tracking-tight leading-[1.14] mb-4">
                         Criatividade afiada, <br>
                         código veloz e <br>
                         <span class="text-bulls-red underline decoration-olive-400 decoration-wavy decoration-2 underline-offset-4">
@@ -217,83 +264,86 @@
                         </span>
                     </h1>
 
-                    <p class="text-sm sm:text-base text-olive-800/90 leading-relaxed font-normal mb-6 max-w-xl">
-                        Prazer, sou o <strong class="text-olive-900 font-bold">Fabrício Mariano</strong> (<span class="font-mono text-bulls-red font-semibold">@marianodev</span>). Construo sites sob medida para clínicas médicas, psicólogos, consultórios de estética, restaurantes, lojas de produtos de limpeza, criadores de conteúdo e e-commerces em geral. Estruturas pensadas para valorizar o seu negócio e converter visitantes em clientes.
+                    <p class="text-base sm:text-lg text-olive-900 leading-relaxed font-normal mb-7 max-w-xl">
+                        Prazer, sou o <strong class="text-olive-950 font-bold">Fabrício Mariano</strong> (<span class="font-mono text-bulls-red font-bold">@marianodev</span>). Construo sites sob medida para médicos, psicólogos, consultórios de estética, restaurantes, lojas de produtos de limpeza, influenciadores e lojas de roupas. Estruturas pensadas para valorizar sua autoridade e converter visitantes em contatos.
                     </p>
 
-                    <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 mb-6">
-                        <a href="#nichos" class="px-6 py-3 rounded-xl bg-olive text-cream-50 font-display font-bold text-sm text-center hover:bg-bulls-red shadow-md hover:shadow-bulls-red/30 transition-all duration-300 flex items-center justify-center gap-2">
-                            <span>Conhecer os Mercados</span>
+                    <!-- Botões de Ação -->
+                    <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 mb-8">
+                        <a href="#nichos" class="px-7 py-3.5 rounded-xl bg-olive text-cream-50 font-display font-bold text-sm text-center hover:bg-bulls-red shadow-md hover:shadow-bulls-red/30 transition-all flex items-center justify-center gap-2">
+                            <span>Ver Segmentos Atendidos</span>
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"></path></svg>
                         </a>
-                        <a href="https://wa.me/5524999629761?text=Ol%C3%A1%20Fabr%C3%ADcio%20(@marianodev),%20gostaria%20de%20trocar%20uma%20ideia%20sobre%20meu%20novo%20site!" target="_blank" rel="noopener noreferrer" class="px-6 py-3 rounded-xl border-2 border-olive-400/80 bg-cream-100/90 text-olive-900 font-display font-bold text-sm text-center hover:bg-bulls-black hover:text-white hover:border-bulls-black transition-all duration-300">
-                            Falar Comigo no WhatsApp
+                        <a href="https://wa.me/5524999629761?text=Ol%C3%A1%20Fabr%C3%ADcio%20(@marianodev),%20gostaria%20de%20trocar%20uma%20ideia%20sobre%20meu%20novo%20site!" target="_blank" rel="noopener noreferrer" class="px-7 py-3.5 rounded-xl border-2 border-olive-500 bg-cream-100 text-olive-950 font-display font-bold text-sm text-center hover:bg-bulls-black hover:text-white hover:border-bulls-black transition-all shadow-sm">
+                            Falar no WhatsApp
                         </a>
                     </div>
 
-                    <!-- Métricas -->
-                    <div class="pt-4 border-t border-olive-200/80 grid grid-cols-3 gap-3">
+                    <!-- Métricas de Performance -->
+                    <div class="pt-5 border-t border-olive-300 grid grid-cols-3 gap-4">
                         <div>
-                            <p class="font-display font-black text-xl sm:text-2xl text-olive-900">&lt; 1.0s</p>
-                            <p class="text-[11px] font-semibold text-olive-600">Velocidade no Telemóvel</p>
+                            <p class="font-display font-black text-2xl sm:text-3xl text-olive-950">&lt; 1.0s</p>
+                            <p class="text-xs sm:text-sm font-bold text-olive-700 mt-0.5">Velocidade no Celular</p>
                         </div>
                         <div>
-                            <p class="font-display font-black text-xl sm:text-2xl text-bulls-red">100%</p>
-                            <p class="text-[11px] font-semibold text-olive-600">Sob Medida</p>
+                            <p class="font-display font-black text-2xl sm:text-3xl text-bulls-red">100%</p>
+                            <p class="text-xs sm:text-sm font-bold text-olive-700 mt-0.5">Sob Medida</p>
                         </div>
                         <div>
-                            <p class="font-display font-black text-xl sm:text-2xl text-olive-900">Multi-Nicho</p>
-                            <p class="text-[11px] font-semibold text-olive-600">Qualquer Segmento</p>
+                            <p class="font-display font-black text-2xl sm:text-3xl text-olive-950">Multi-Nicho</p>
+                            <p class="text-xs sm:text-sm font-bold text-olive-700 mt-0.5">Qualquer Segmento</p>
                         </div>
                     </div>
                 </div>
 
-                <!-- Fotografia Real Inteira em Formato Vertical -->
+                <!-- Foto do Setup Real (Inteira, Vertical e com Fallbacks Automáticos) -->
                 <div class="lg:col-span-5 flex justify-center">
                     <div class="relative w-full max-w-md">
-                        <div class="absolute -inset-2 bg-gradient-to-r from-bulls-red/20 via-olive-700/15 to-bulls-black/30 rounded-3xl blur-xl opacity-75 pointer-events-none"></div>
+                        <div class="absolute -inset-2 bg-gradient-to-r from-bulls-red/25 via-olive-700/20 to-bulls-black/35 rounded-3xl blur-xl opacity-80 pointer-events-none"></div>
 
-                        <div class="relative bg-cream-card rounded-2xl border-2 border-olive-400/80 p-3 sm:p-4 custom-card-shadow overflow-hidden">
-                            <!-- Top bar: Estilo Workstation -->
-                            <div class="flex items-center justify-between pb-2 mb-2 border-b border-olive-200">
+                        <div class="relative bg-cream-card rounded-2xl border-2 border-olive-400 p-3.5 sm:p-4 custom-card-shadow overflow-hidden">
+                            <!-- Topo Estilo Janela / Workstation -->
+                            <div class="flex items-center justify-between pb-2.5 mb-2.5 border-b border-olive-200">
                                 <div class="flex items-center gap-1.5">
-                                    <span class="w-2.5 h-2.5 rounded-full bg-bulls-red"></span>
-                                    <span class="w-2.5 h-2.5 rounded-full bg-amber-400"></span>
-                                    <span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span>
-                                    <span class="text-xs font-mono font-bold text-olive-800 ml-1">workstation.marianodev</span>
+                                    <span class="w-3 h-3 rounded-full bg-bulls-red"></span>
+                                    <span class="w-3 h-3 rounded-full bg-amber-400"></span>
+                                    <span class="w-3 h-3 rounded-full bg-emerald-500"></span>
+                                    <span class="text-xs font-mono font-bold text-olive-900 ml-1">workstation.marianodev</span>
                                 </div>
-                                <span class="text-[9px] font-mono px-2 py-0.5 rounded-full bg-bulls-red/10 text-bulls-red font-bold uppercase tracking-wider flex items-center gap-1">
+                                <span class="text-[10px] font-mono px-2.5 py-0.5 rounded-full bg-bulls-red/15 text-bulls-red font-bold uppercase tracking-wider flex items-center gap-1">
                                     <span class="w-1.5 h-1.5 rounded-full bg-bulls-red animate-ping"></span>
                                     Volta Redonda - RJ
                                 </span>
                             </div>
 
-                            <!-- Fotografia Completa sem Cortes -->
-                            <div class="relative w-full overflow-hidden rounded-xl border border-olive-300 shadow-inner bg-bulls-black">
+                            <!-- Imagem Real Completa (Preservando Estante de Livros e Setup Inteiro) -->
+                            <div class="relative w-full overflow-hidden rounded-xl border border-olive-300 shadow-inner bg-bulls-black flex items-center justify-center min-h-[380px]">
                                 <img 
+                                    id="heroWorkstationImg"
                                     src="perfil.jpg" 
                                     alt="Fabrício Mariano — Desenvolvedor @marianodev em seu setup"
-                                    class="w-full h-auto block rounded-xl object-contain drop-shadow-md"
+                                    class="w-full h-auto block rounded-xl object-contain drop-shadow"
                                     loading="eager"
+                                    onerror="handleImageFallback(this)"
                                 />
                             </div>
 
-                            <!-- Caixa de Identificação Inferior -->
-                            <div class="mt-2.5 p-2.5 bg-cream-50 rounded-xl border border-olive-300 text-olive-900 shadow-sm">
+                            <!-- Cartão Inferior de Identificação -->
+                            <div class="mt-3 p-3 bg-cream-50 rounded-xl border border-olive-300 text-olive-950 shadow-sm">
                                 <div class="flex items-center justify-between">
                                     <div>
                                         <div class="flex items-center gap-2">
-                                            <h4 class="font-display font-black text-sm sm:text-base text-olive-900">Fabrício Mariano</h4>
-                                            <span class="text-[10px] font-mono font-bold px-2 py-0.5 rounded-md bg-bulls-red text-white">@marianodev</span>
+                                            <h4 class="font-display font-black text-base text-olive-950">Fabrício Mariano</h4>
+                                            <span class="text-[11px] font-mono font-bold px-2 py-0.5 rounded-md bg-bulls-red text-white">@marianodev</span>
                                         </div>
-                                        <p class="text-[10.5px] font-semibold text-olive-700 flex items-center gap-1 mt-0.5">
+                                        <p class="text-xs font-semibold text-olive-800 flex items-center gap-1 mt-0.5">
                                             <span>📍 Volta Redonda - RJ</span>
                                             <span class="text-olive-400">•</span>
-                                            <span>Desenvolvimento Web & E-Commerce</span>
+                                            <span>Desenvolvimento Web & Lojas de Roupas</span>
                                         </p>
                                     </div>
-                                    <div class="flex items-center gap-1 px-2 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-800 text-[9.5px] font-mono font-bold">
-                                        <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                                    <div class="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-500/15 border border-emerald-500/30 text-emerald-900 text-xs font-mono font-bold">
+                                        <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
                                         <span>Disponível</span>
                                     </div>
                                 </div>
@@ -306,128 +356,128 @@
         </section>
 
         <!-- Segmentos Atendidos -->
-        <section id="nichos" class="py-12 sm:py-14 bg-cream-200/80 border-y border-olive-200">
+        <section id="nichos" class="py-14 sm:py-16 bg-cream-200/90 border-y border-olive-300">
             <div class="max-w-6xl mx-auto px-5 sm:px-6">
-                <div class="text-center max-w-2xl mx-auto mb-8">
-                    <div class="flex items-center justify-center gap-2 text-xs font-bold font-mono uppercase tracking-widest text-bulls-red mb-1">
+                <div class="text-center max-w-2xl mx-auto mb-10">
+                    <div class="flex items-center justify-center gap-2 text-xs font-bold font-mono uppercase tracking-widest text-bulls-red mb-1.5">
                         <span>// ATENDIMENTO COMPLETO A TODOS OS SEGMENTOS</span>
                     </div>
-                    <h2 class="font-display font-black text-2xl sm:text-3xl md:text-[2.2rem] text-olive-900 leading-tight">
+                    <h2 class="font-display font-black text-2xl sm:text-3xl md:text-4xl text-olive-950 leading-tight">
                         O projeto ideal para o seu modelo de negócio
                     </h2>
-                    <p class="text-olive-700 text-xs sm:text-sm mt-2 font-medium leading-relaxed">
-                        Seja para consultas, produtos físicos ou serviços locais, a estrutura é desenhada com o design, a comunicação e o fluxo exatos para transformar visitantes em clientes reais.
+                    <p class="text-olive-800 text-sm sm:text-base mt-2.5 font-medium leading-relaxed">
+                        Seja para consultas particulares, produtos físicos ou serviços locais, a estrutura é desenhada com o design, a comunicação e o fluxo exatos para transformar visitantes em clientes reais.
                     </p>
                 </div>
 
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5">
-                    <div class="bg-cream-50 rounded-xl p-4 sm:p-5 border border-olive-300 custom-card-shadow hover:-translate-y-1 transition-all">
-                        <div class="w-9 h-9 rounded-lg bg-olive-700 text-white flex items-center justify-center text-lg mb-2.5">🩺</div>
-                        <h3 class="font-display font-bold text-sm sm:text-base text-olive-900 mb-1">Médicos & Clínicas</h3>
-                        <p class="text-olive-700 text-xs leading-relaxed mb-2.5">Páginas dedicadas com agendamento direto de consultas particulares e convénios via WhatsApp.</p>
-                        <span class="text-[9.5px] font-mono text-bulls-red font-semibold">Agendamento & Localização</span>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                    <div class="bg-cream-50 rounded-2xl p-5 border border-olive-300 custom-card-shadow hover:-translate-y-1 transition-all">
+                        <div class="w-10 h-10 rounded-xl bg-olive-700 text-white flex items-center justify-center text-xl mb-3 shadow-sm">🩺</div>
+                        <h3 class="font-display font-bold text-base text-olive-950 mb-1.5">Médicos & Clínicas</h3>
+                        <p class="text-olive-800 text-xs sm:text-sm leading-relaxed mb-3">Páginas dedicadas com agendamento direto de consultas particulares e convênios via WhatsApp.</p>
+                        <span class="text-xs font-mono text-bulls-red font-bold">Agendamento & Localização</span>
                     </div>
 
-                    <div class="bg-cream-50 rounded-xl p-4 sm:p-5 border border-olive-300 custom-card-shadow hover:-translate-y-1 transition-all">
-                        <div class="w-9 h-9 rounded-lg bg-olive-600 text-white flex items-center justify-center text-lg mb-2.5">🧠</div>
-                        <h3 class="font-display font-bold text-sm sm:text-base text-olive-900 mb-1">Psicólogos & Terapeutas</h3>
-                        <p class="text-olive-700 text-xs leading-relaxed mb-2.5">Apresentação profissional e ética que transmite confiança para sessões presenciais ou online.</p>
-                        <span class="text-[9.5px] font-mono text-bulls-red font-semibold">Sessões Online & Presenciais</span>
+                    <div class="bg-cream-50 rounded-2xl p-5 border border-olive-300 custom-card-shadow hover:-translate-y-1 transition-all">
+                        <div class="w-10 h-10 rounded-xl bg-olive-600 text-white flex items-center justify-center text-xl mb-3 shadow-sm">🧠</div>
+                        <h3 class="font-display font-bold text-base text-olive-950 mb-1.5">Psicólogos & Terapeutas</h3>
+                        <p class="text-olive-800 text-xs sm:text-sm leading-relaxed mb-3">Apresentação profissional e ética que transmite confiança para sessões presenciais ou online.</p>
+                        <span class="text-xs font-mono text-bulls-red font-bold">Sessões Online & Presenciais</span>
                     </div>
 
-                    <div class="bg-cream-50 rounded-xl p-4 sm:p-5 border border-olive-300 custom-card-shadow hover:-translate-y-1 transition-all">
-                        <div class="w-9 h-9 rounded-lg bg-bulls-red text-white flex items-center justify-center text-lg mb-2.5">✨</div>
-                        <h3 class="font-display font-bold text-sm sm:text-base text-olive-900 mb-1">Estética & Bem-Estar</h3>
-                        <p class="text-olive-700 text-xs leading-relaxed mb-2.5">Espaços de beleza, harmonização e cuidados corporais com demonstração clara de procedimentos e resultados.</p>
-                        <span class="text-[9.5px] font-mono text-bulls-red font-semibold">Galeria & Avaliações</span>
+                    <div class="bg-cream-50 rounded-2xl p-5 border border-olive-300 custom-card-shadow hover:-translate-y-1 transition-all">
+                        <div class="w-10 h-10 rounded-xl bg-bulls-red text-white flex items-center justify-center text-xl mb-3 shadow-sm">✨</div>
+                        <h3 class="font-display font-bold text-base text-olive-950 mb-1.5">Estética & Bem-Estar</h3>
+                        <p class="text-olive-800 text-xs sm:text-sm leading-relaxed mb-3">Espaços de beleza, harmonização e cuidados corporais com demonstração clara de procedimentos e resultados.</p>
+                        <span class="text-xs font-mono text-bulls-red font-bold">Galeria & Avaliações</span>
                     </div>
 
-                    <div class="bg-cream-50 rounded-xl p-4 sm:p-5 border border-olive-300 custom-card-shadow hover:-translate-y-1 transition-all">
-                        <div class="w-9 h-9 rounded-lg bg-olive-800 text-cream-50 flex items-center justify-center text-lg mb-2.5">🧼</div>
-                        <h3 class="font-display font-bold text-sm sm:text-base text-olive-900 mb-1">Produtos de Limpeza</h3>
-                        <p class="text-olive-700 text-xs leading-relaxed mb-2.5">Catálogo organizado para venda no retalho ou por grosso com cotação instantânea pelo WhatsApp.</p>
-                        <span class="text-[9.5px] font-mono text-bulls-red font-semibold">Catálogo & Orçamentos</span>
+                    <div class="bg-cream-50 rounded-2xl p-5 border border-olive-300 custom-card-shadow hover:-translate-y-1 transition-all">
+                        <div class="w-10 h-10 rounded-xl bg-olive-800 text-cream-50 flex items-center justify-center text-xl mb-3 shadow-sm">🧼</div>
+                        <h3 class="font-display font-bold text-base text-olive-950 mb-1.5">Produtos de Limpeza</h3>
+                        <p class="text-olive-800 text-xs sm:text-sm leading-relaxed mb-3">Catálogo organizado para venda no varejo ou atacado com cotação instantânea pelo WhatsApp.</p>
+                        <span class="text-xs font-mono text-bulls-red font-bold">Catálogo & Orçamentos</span>
                     </div>
 
-                    <div class="bg-cream-50 rounded-xl p-4 sm:p-5 border border-olive-300 custom-card-shadow hover:-translate-y-1 transition-all">
-                        <div class="w-9 h-9 rounded-lg bg-bulls-black text-white flex items-center justify-center text-lg mb-2.5">🎬</div>
-                        <h3 class="font-display font-bold text-sm sm:text-base text-olive-900 mb-1">Criadoras de Conteúdo</h3>
-                        <p class="text-olive-700 text-xs leading-relaxed mb-2.5">Mídia kit digital, parcerias comerciais, promoção de mentorias e produtos digitais.</p>
-                        <span class="text-[9.5px] font-mono text-bulls-red font-semibold">Mídia Kit & Parcerias</span>
+                    <div class="bg-cream-50 rounded-2xl p-5 border border-olive-300 custom-card-shadow hover:-translate-y-1 transition-all">
+                        <div class="w-10 h-10 rounded-xl bg-bulls-black text-white flex items-center justify-center text-xl mb-3 shadow-sm">🎬</div>
+                        <h3 class="font-display font-bold text-base text-olive-950 mb-1.5">Influenciadores</h3>
+                        <p class="text-olive-800 text-xs sm:text-sm leading-relaxed mb-3">Para influenciadores, mentores e criadores de conteúdo. Mídia kit digital profissional, parcerias comerciais, promoção de mentorias e infoprodutos.</p>
+                        <span class="text-xs font-mono text-bulls-red font-bold">Mídia Kit & Parcerias</span>
                     </div>
 
-                    <div class="bg-cream-50 rounded-xl p-4 sm:p-5 border border-olive-300 custom-card-shadow hover:-translate-y-1 transition-all">
-                        <div class="w-9 h-9 rounded-lg bg-amber-600 text-white flex items-center justify-center text-lg mb-2.5">🍔</div>
-                        <h3 class="font-display font-bold text-sm sm:text-base text-olive-900 mb-1">Restaurantes & Gastronomia</h3>
-                        <p class="text-olive-700 text-xs leading-relaxed mb-2.5">Ementa digital otimizada para abertura imediata no telemóvel, localização e pedidos no WhatsApp.</p>
-                        <span class="text-[9.5px] font-mono text-bulls-red font-semibold">Ementa & Delivery</span>
+                    <div class="bg-cream-50 rounded-2xl p-5 border border-olive-300 custom-card-shadow hover:-translate-y-1 transition-all">
+                        <div class="w-10 h-10 rounded-xl bg-amber-600 text-white flex items-center justify-center text-xl mb-3 shadow-sm">🍔</div>
+                        <h3 class="font-display font-bold text-base text-olive-950 mb-1.5">Restaurantes & Gastronomia</h3>
+                        <p class="text-olive-800 text-xs sm:text-sm leading-relaxed mb-3">Cardápio digital otimizado para abertura imediata no celular, localização e pedidos no WhatsApp.</p>
+                        <span class="text-xs font-mono text-bulls-red font-bold">Cardápio & Delivery</span>
                     </div>
 
-                    <div class="bg-cream-50 rounded-xl p-4 sm:p-5 border border-olive-300 custom-card-shadow hover:-translate-y-1 transition-all">
-                        <div class="w-9 h-9 rounded-lg bg-bulls-red text-white flex items-center justify-center text-lg mb-2.5">👕</div>
-                        <h3 class="font-display font-bold text-sm sm:text-base text-olive-900 mb-1">Streetwear & Vestuário</h3>
-                        <p class="text-olive-700 text-xs leading-relaxed mb-2.5">Plataformas desenvolvidas para drops rápidos, navegação simplificada e grande impacto estético.</p>
-                        <span class="text-[9.5px] font-mono text-bulls-red font-semibold">E-Commerce & Drops</span>
+                    <div class="bg-cream-50 rounded-2xl p-5 border border-olive-300 custom-card-shadow hover:-translate-y-1 transition-all">
+                        <div class="w-10 h-10 rounded-xl bg-bulls-red text-white flex items-center justify-center text-xl mb-3 shadow-sm">👕</div>
+                        <h3 class="font-display font-bold text-base text-olive-950 mb-1.5">Lojas de Roupas & Streetwear</h3>
+                        <p class="text-olive-800 text-xs sm:text-sm leading-relaxed mb-3">Plataformas desenvolvidas para lançamentos rápidos, navegação simplificada, tamanhos e grande impacto estético.</p>
+                        <span class="text-xs font-mono text-bulls-red font-bold">Lojas de Roupas & Drops</span>
                     </div>
 
-                    <div class="bg-cream-50 rounded-xl p-4 sm:p-5 border border-olive-300 custom-card-shadow hover:-translate-y-1 transition-all">
-                        <div class="w-9 h-9 rounded-lg bg-olive-900 text-cream-50 flex items-center justify-center text-lg mb-2.5">🏢</div>
-                        <h3 class="font-display font-bold text-sm sm:text-base text-olive-900 mb-1">Negócios Locais</h3>
-                        <p class="text-olive-700 text-xs leading-relaxed mb-2.5">Empresas e prestadores de serviços de Volta Redonda e região que procuram presença forte no Google.</p>
-                        <span class="text-[9.5px] font-mono text-bulls-red font-semibold">Google & Proximidade</span>
+                    <div class="bg-cream-50 rounded-2xl p-5 border border-olive-300 custom-card-shadow hover:-translate-y-1 transition-all">
+                        <div class="w-10 h-10 rounded-xl bg-olive-900 text-cream-50 flex items-center justify-center text-xl mb-3 shadow-sm">🏢</div>
+                        <h3 class="font-display font-bold text-base text-olive-950 mb-1.5">Negócios Locais</h3>
+                        <p class="text-olive-800 text-xs sm:text-sm leading-relaxed mb-3">Empresas e prestadores de serviços de Volta Redonda e região que procuram presença forte no Google.</p>
+                        <span class="text-xs font-mono text-bulls-red font-bold">Google & Proximidade</span>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Modelos de Produção -->
-        <section id="servicos" class="py-12 sm:py-14 bg-cream-50 border-b border-olive-200">
+        <!-- Formatos Produzidos -->
+        <section id="servicos" class="py-14 sm:py-16 bg-cream-50 border-b border-olive-300">
             <div class="max-w-6xl mx-auto px-5 sm:px-6">
-                <div class="flex flex-col md:flex-row md:items-end justify-between mb-8">
+                <div class="flex flex-col md:flex-row md:items-end justify-between mb-10">
                     <div class="max-w-xl">
-                        <div class="flex items-center gap-2 text-xs font-bold font-mono uppercase tracking-widest text-bulls-red mb-1">
+                        <div class="flex items-center gap-2 text-xs font-bold font-mono uppercase tracking-widest text-bulls-red mb-1.5">
                             <span>// FORMATOS DISPONÍVEIS</span>
                         </div>
-                        <h2 class="font-display font-black text-2xl sm:text-3xl text-olive-900">
+                        <h2 class="font-display font-black text-2xl sm:text-3xl md:text-4xl text-olive-950">
                             Estruturas pensadas para resultados práticos
                         </h2>
                     </div>
-                    <p class="text-olive-700 text-xs sm:text-sm max-w-md mt-2 md:mt-0 font-medium leading-relaxed">
-                        Desenvolvimento nativo, focado na facilidade de navegação do visitante e no contacto direto consigo.
+                    <p class="text-olive-800 text-sm sm:text-base max-w-md mt-3 md:mt-0 font-medium leading-relaxed">
+                        Desenvolvimento nativo, focado na facilidade de navegação do visitante e no contato direto com você.
                     </p>
                 </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                    <div class="bg-cream-100 rounded-2xl p-5 sm:p-6 border border-olive-300/80 custom-card-shadow hover:-translate-y-1 transition-all">
-                        <div class="w-9 h-9 rounded-xl bg-bulls-red text-white flex items-center justify-center font-display font-black text-base mb-3 shadow">01</div>
-                        <h3 class="font-display font-black text-base sm:text-lg text-olive-900 mb-2">Lojas Virtuais & Catálogos</h3>
-                        <p class="text-olive-700 text-xs sm:text-sm leading-relaxed mb-3">Apresentação clara de produtos, filtros por categorias e finalização ágil via WhatsApp ou checkout integrado.</p>
-                        <ul class="text-xs font-mono text-olive-800 space-y-1 pt-2 border-t border-olive-200">
-                            <li>✔ Catálogo fluido sem lentidão</li>
-                            <li>✔ Filtro de categorias e fotografias</li>
-                            <li>✔ Contacto direto para fecho de pedidos</li>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+                    <div class="bg-cream-100 rounded-2xl p-6 border border-olive-300 custom-card-shadow hover:-translate-y-1 transition-all">
+                        <div class="w-10 h-10 rounded-xl bg-bulls-red text-white flex items-center justify-center font-display font-black text-lg mb-3.5 shadow">01</div>
+                        <h3 class="font-display font-black text-lg sm:text-xl text-olive-950 mb-2">Lojas de Roupas & Catálogos</h3>
+                        <p class="text-olive-800 text-sm leading-relaxed mb-4">Apresentação clara de produtos, filtros por categorias e finalização ágil via WhatsApp ou checkout integrado.</p>
+                        <ul class="text-xs sm:text-sm font-mono text-olive-900 space-y-1.5 pt-3 border-t border-olive-300">
+                            <li>✔ Catálogo fluido sem travamentos</li>
+                            <li>✔ Filtro de categorias e fotos</li>
+                            <li>✔ Contato direto para fechar pedidos</li>
                         </ul>
                     </div>
 
-                    <div class="bg-cream-100 rounded-2xl p-5 sm:p-6 border border-olive-300/80 custom-card-shadow hover:-translate-y-1 transition-all">
-                        <div class="w-9 h-9 rounded-xl bg-olive-600 text-cream-50 flex items-center justify-center font-display font-black text-base mb-3 shadow">02</div>
-                        <h3 class="font-display font-black text-base sm:text-lg text-olive-900 mb-2">Landing Pages de Alta Conversão</h3>
-                        <p class="text-olive-700 text-xs sm:text-sm leading-relaxed mb-3">Ideais para tráfego pago (Meta e Google Ads), campanhas específicas e agendamento direto de clientes e pacientes.</p>
-                        <ul class="text-xs font-mono text-olive-800 space-y-1 pt-2 border-t border-olive-200">
+                    <div class="bg-cream-100 rounded-2xl p-6 border border-olive-300 custom-card-shadow hover:-translate-y-1 transition-all">
+                        <div class="w-10 h-10 rounded-xl bg-olive-600 text-cream-50 flex items-center justify-center font-display font-black text-lg mb-3.5 shadow">02</div>
+                        <h3 class="font-display font-black text-lg sm:text-xl text-olive-950 mb-2">Landing Pages de Conversão</h3>
+                        <p class="text-olive-800 text-sm leading-relaxed mb-4">Ideais para tráfego pago (Meta e Google Ads), campanhas específicas e agendamento direto de clientes e pacientes.</p>
+                        <ul class="text-xs sm:text-sm font-mono text-olive-900 space-y-1.5 pt-3 border-t border-olive-300">
                             <li>✔ Mensagens diretas e persuasivas</li>
                             <li>✔ Carregamento abaixo de 1 segundo</li>
-                            <li>✔ Máxima taxa de cliques para contacto</li>
+                            <li>✔ Máxima taxa de cliques para contato</li>
                         </ul>
                     </div>
 
-                    <div class="bg-cream-100 rounded-2xl p-5 sm:p-6 border border-olive-300/80 custom-card-shadow hover:-translate-y-1 transition-all">
-                        <div class="w-9 h-9 rounded-xl bg-bulls-black text-cream-50 flex items-center justify-center font-display font-black text-base mb-3 shadow">03</div>
-                        <h3 class="font-display font-black text-base sm:text-lg text-olive-900 mb-2">Sites Institucionais</h3>
-                        <p class="text-olive-700 text-xs sm:text-sm leading-relaxed mb-3">Para clínicas, empresas e consultorias que precisam de autoridade de marca e boa indexação no motor de pesquisa.</p>
-                        <ul class="text-xs font-mono text-olive-800 space-y-1 pt-2 border-t border-olive-200">
+                    <div class="bg-cream-100 rounded-2xl p-6 border border-olive-300 custom-card-shadow hover:-translate-y-1 transition-all">
+                        <div class="w-10 h-10 rounded-xl bg-bulls-black text-cream-50 flex items-center justify-center font-display font-black text-lg mb-3.5 shadow">03</div>
+                        <h3 class="font-display font-black text-lg sm:text-xl text-olive-950 mb-2">Sites Institucionais</h3>
+                        <p class="text-olive-800 text-sm leading-relaxed mb-4">Para clínicas, empresas e consultorias que precisam de autoridade de marca e boa indexação no Google.</p>
+                        <ul class="text-xs sm:text-sm font-mono text-olive-900 space-y-1.5 pt-3 border-t border-olive-300">
                             <li>✔ Identidade exclusiva e corporativa</li>
                             <li>✔ Otimizado para pesquisas no Google</li>
-                            <li>✔ Responsividade total em qualquer ecrã</li>
+                            <li>✔ Responsividade total em qualquer tela</li>
                         </ul>
                     </div>
                 </div>
@@ -435,70 +485,70 @@
         </section>
 
         <!-- Projetos e Cases -->
-        <section id="projetos" class="py-12 sm:py-16 max-w-6xl mx-auto px-5 sm:px-6">
-            <div class="flex flex-col md:flex-row md:items-end justify-between mb-8">
+        <section id="projetos" class="py-14 sm:py-16 max-w-6xl mx-auto px-5 sm:px-6">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-10">
                 <div>
                     <div class="flex items-center gap-2 text-xs font-mono font-bold uppercase tracking-widest text-bulls-red">
                         <span>★ PROJETOS PRODUZIDOS • NO AR</span>
                     </div>
-                    <h2 class="font-display font-black text-2xl sm:text-3xl text-olive-900 mt-1">
-                        Projetos funcionais e ativos
+                    <h2 class="font-display font-black text-2xl sm:text-3xl md:text-4xl text-olive-950 mt-1">
+                        Projetos no ar com resultados comprovados
                     </h2>
                 </div>
-                <div class="mt-2 md:mt-0 text-xs sm:text-sm font-semibold text-olive-700">
-                    Desenvolvidos e codificados por <span class="font-mono text-bulls-red">@marianodev</span>
+                <div class="mt-2 md:mt-0 text-sm font-bold text-olive-700 font-mono">
+                    Criados e codificados por <span class="text-bulls-red">@marianodev</span>
                 </div>
             </div>
 
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
                 <!-- Case B.R.O Streetwear -->
-                <article class="bg-cream-50 rounded-2xl border-2 border-bulls-red/30 p-5 sm:p-6 custom-card-shadow flex flex-col justify-between relative overflow-hidden group">
+                <article class="bg-cream-50 rounded-3xl border-2 border-bulls-red/40 p-6 sm:p-7 custom-card-shadow flex flex-col justify-between relative overflow-hidden group">
                     <div>
-                        <div class="bg-cream-200/90 rounded-xl p-2.5 mb-4 border border-olive-300/60">
-                            <div class="flex items-center justify-between mb-2 px-1">
+                        <div class="bg-cream-200/90 rounded-2xl p-3 mb-5 border border-olive-300">
+                            <div class="flex items-center justify-between mb-2.5 px-1">
                                 <div class="flex items-center gap-1.5">
-                                    <span class="w-2 h-2 rounded-full bg-bulls-red"></span>
-                                    <span class="w-2 h-2 rounded-full bg-amber-400"></span>
-                                    <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+                                    <span class="w-2.5 h-2.5 rounded-full bg-bulls-red"></span>
+                                    <span class="w-2.5 h-2.5 rounded-full bg-amber-400"></span>
+                                    <span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span>
                                 </div>
-                                <span class="text-[10.5px] font-mono text-olive-700 font-semibold truncate bg-cream-50 px-2.5 py-0.5 rounded-full border border-olive-200">
+                                <span class="text-xs font-mono text-olive-800 font-bold bg-cream-50 px-3 py-0.5 rounded-full border border-olive-300">
                                     brostreet23.vercel.app
                                 </span>
-                                <span class="text-[9px] font-mono text-bulls-red font-bold uppercase">Online</span>
+                                <span class="text-[10px] font-mono text-bulls-red font-bold uppercase">Online</span>
                             </div>
 
-                            <div class="relative overflow-hidden rounded-lg aspect-[16/10] bg-bulls-black flex items-center justify-center shadow-inner">
+                            <div class="relative overflow-hidden rounded-xl aspect-[16/10] bg-bulls-black flex items-center justify-center shadow-inner">
                                 <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent z-10"></div>
-                                <div class="w-full h-full flex flex-col justify-between p-4 sm:p-5 z-20 text-cream-50">
+                                <div class="w-full h-full flex flex-col justify-between p-5 z-20 text-cream-50">
                                     <div class="flex justify-between items-start">
-                                        <span class="font-display font-black tracking-tighter text-xl sm:text-2xl text-cream-50 border-b-2 border-bulls-red pb-0.5">B.R.O</span>
-                                        <span class="text-[8.5px] tracking-widest uppercase bg-bulls-red px-2 py-0.5 rounded-full font-extrabold text-white shadow">STREET CULTURE</span>
+                                        <span class="font-display font-black tracking-tighter text-2xl sm:text-3xl text-cream-50 border-b-2 border-bulls-red pb-0.5">B.R.O</span>
+                                        <span class="text-[10px] tracking-widest uppercase bg-bulls-red px-2.5 py-1 rounded-full font-extrabold text-white shadow">STREET CULTURE</span>
                                     </div>
                                     <div>
-                                        <p class="text-[9.5px] font-mono uppercase tracking-widest text-cream-300 mb-0.5">Moda Urbana & Drop Autêntico</p>
-                                        <h4 class="font-display font-black text-lg sm:text-xl leading-tight text-white">Mais Que Roupa. É Cultura.</h4>
+                                        <p class="text-xs font-mono uppercase tracking-widest text-cream-300 mb-0.5">Moda Urbana & Lançamentos</p>
+                                        <h4 class="font-display font-black text-xl sm:text-2xl leading-tight text-white">Mais Que Roupa. É Cultura.</h4>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="flex flex-wrap items-center gap-1.5 mb-2.5">
-                            <span class="px-2.5 py-0.5 rounded-full bg-bulls-red text-white text-[10.5px] font-bold font-mono">E-commerce Oficial</span>
-                            <span class="px-2.5 py-0.5 rounded-full bg-cream-200 text-olive-800 text-[10.5px] font-semibold">Streetwear</span>
+                        <div class="flex flex-wrap items-center gap-2 mb-3">
+                            <span class="px-3 py-1 rounded-full bg-bulls-red text-white text-xs font-bold font-mono">Loja de Roupas Oficial</span>
+                            <span class="px-3 py-1 rounded-full bg-cream-200 text-olive-900 text-xs font-bold">Streetwear</span>
                         </div>
 
-                        <h3 class="font-display font-black text-lg sm:text-xl text-olive-900 mb-1">B.R.O STREETWEAR</h3>
-                        <p class="text-olive-800 text-xs sm:text-sm leading-relaxed mb-4">
-                            Loja virtual desenvolvida para transmitir a identidade do vestuário streetwear, focada em navegação mobile ágil e catálogo objetivo.
+                        <h3 class="font-display font-black text-xl sm:text-2xl text-olive-950 mb-2">B.R.O STREETWEAR</h3>
+                        <p class="text-olive-900 text-sm leading-relaxed mb-5">
+                            Loja de roupas desenvolvida para transmitir a força estética do streetwear nacional. Projetada para navegação mobile com alta velocidade de carregamento, catálogo dinâmico e forte impacto visual.
                         </p>
                     </div>
 
-                    <div class="pt-3 border-t border-olive-200 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-2.5">
-                        <button onclick="openModal('bro')" class="text-xs font-bold text-olive-800 hover:text-bulls-red transition-colors flex items-center gap-1 underline underline-offset-4">
+                    <div class="pt-4 border-t border-olive-300 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
+                        <button onclick="openModal('bro')" class="text-sm font-bold text-olive-900 hover:text-bulls-red transition-colors flex items-center gap-1.5 underline underline-offset-4">
                             <span>Ver bastidores do projeto</span>
-                            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
                         </button>
-                        <a href="https://brostreet23.vercel.app" target="_blank" rel="noopener noreferrer" class="px-4 py-2 rounded-full bg-bulls-red text-white text-xs font-bold hover:bg-bulls-redDark transition-all flex items-center justify-center gap-1.5 shadow">
+                        <a href="https://brostreet23.vercel.app" target="_blank" rel="noopener noreferrer" class="px-5 py-2.5 rounded-full bg-bulls-red text-white text-xs font-bold hover:bg-bulls-redDark transition-all flex items-center justify-center gap-1.5 shadow">
                             <span>Visitar brostreet23.vercel.app</span>
                             <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
                         </a>
@@ -506,51 +556,53 @@
                 </article>
 
                 <!-- Case Saúde & Consultório -->
-                <article class="bg-cream-50 rounded-2xl border border-olive-300/80 p-5 sm:p-6 custom-card-shadow flex flex-col justify-between group">
+                <article class="bg-cream-50 rounded-3xl border border-olive-300 p-6 sm:p-7 custom-card-shadow flex flex-col justify-between group">
                     <div>
-                        <div class="bg-cream-200/90 rounded-xl p-2.5 mb-4 border border-olive-300/60">
-                            <div class="flex items-center justify-between mb-2 px-1">
+                        <div class="bg-cream-200/90 rounded-2xl p-3 mb-5 border border-olive-300">
+                            <div class="flex items-center justify-between mb-2.5 px-1">
                                 <div class="flex items-center gap-1.5">
-                                    <span class="w-2 h-2 rounded-full bg-bulls-red"></span>
-                                    <span class="w-2 h-2 rounded-full bg-amber-400"></span>
-                                    <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+                                    <span class="w-2.5 h-2.5 rounded-full bg-bulls-red"></span>
+                                    <span class="w-2.5 h-2.5 rounded-full bg-amber-400"></span>
+                                    <span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span>
                                 </div>
-                                <span class="text-[10.5px] font-mono text-olive-700 font-semibold">clinica-integrada.com</span>
-                                <span class="text-[9px] font-mono text-olive-500 font-bold uppercase">Saúde</span>
+                                <span class="text-xs font-mono text-olive-800 font-bold bg-cream-50 px-3 py-0.5 rounded-full border border-olive-300">
+                                    clinica-integrada.com
+                                </span>
+                                <span class="text-[10px] font-mono text-olive-600 font-bold uppercase">Saúde</span>
                             </div>
 
-                            <div class="relative overflow-hidden rounded-lg aspect-[16/10] bg-olive-800 flex items-center justify-center">
+                            <div class="relative overflow-hidden rounded-xl aspect-[16/10] bg-olive-800 flex items-center justify-center">
                                 <div class="absolute inset-0 bg-gradient-to-t from-olive-950 via-olive-900/50 to-transparent z-10"></div>
-                                <div class="w-full h-full flex flex-col justify-between p-4 sm:p-5 z-20 text-cream-50">
+                                <div class="w-full h-full flex flex-col justify-between p-5 z-20 text-cream-50">
                                     <div class="flex justify-between items-start">
-                                        <span class="font-display font-bold tracking-widest text-sm sm:text-base uppercase">CLÍNICA VITA</span>
-                                        <span class="text-[8.5px] uppercase bg-white/20 backdrop-blur-md px-2 py-0.5 rounded-full font-semibold">Saúde & Bem-Estar</span>
+                                        <span class="font-display font-bold tracking-widest text-base uppercase">CLÍNICA VITA</span>
+                                        <span class="text-[10px] uppercase bg-white/20 backdrop-blur-md px-2.5 py-0.5 rounded-full font-bold">Saúde & Bem-Estar</span>
                                     </div>
                                     <div>
-                                        <p class="text-[9.5px] font-mono uppercase tracking-widest text-cream-200 mb-0.5">Medicina • Psicologia • Estética</p>
-                                        <h4 class="font-display font-bold text-base sm:text-lg leading-tight">Cuidando de Si por Inteiro</h4>
+                                        <p class="text-xs font-mono uppercase tracking-widest text-cream-200 mb-0.5">Medicina • Psicologia • Estética</p>
+                                        <h4 class="font-display font-bold text-xl sm:text-2xl leading-tight">Cuidando de Você por Inteiro</h4>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="flex flex-wrap items-center gap-1.5 mb-2.5">
-                            <span class="px-2.5 py-0.5 rounded-full bg-olive-100 text-olive-800 text-[10.5px] font-bold">Saúde & Bem-Estar</span>
-                            <span class="px-2.5 py-0.5 rounded-full bg-cream-200 text-olive-800 text-[10.5px] font-semibold">Agendamento Online</span>
+                        <div class="flex flex-wrap items-center gap-2 mb-3">
+                            <span class="px-3 py-1 rounded-full bg-olive-200 text-olive-950 text-xs font-bold">Saúde & Bem-Estar</span>
+                            <span class="px-3 py-1 rounded-full bg-cream-200 text-olive-950 text-xs font-bold">Agendamento Online</span>
                         </div>
 
-                        <h3 class="font-display font-black text-lg sm:text-xl text-olive-900 mb-1">Clínica Vita — Consultas & Saúde</h3>
-                        <p class="text-olive-800 text-xs sm:text-sm leading-relaxed mb-4">
-                            Estrutura criada para agilizar marcações via WhatsApp, demonstrar o corpo clínico e detalhar especialidades com clareza.
+                        <h3 class="font-display font-black text-xl sm:text-2xl text-olive-950 mb-2">Clínica Vita — Consultas & Saúde</h3>
+                        <p class="text-olive-900 text-sm leading-relaxed mb-5">
+                            Estrutura criada para agilizar agendamentos via WhatsApp, demonstrar o corpo clínico e detalhar especialidades com total clareza.
                         </p>
                     </div>
 
-                    <div class="pt-3 border-t border-olive-200 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-2.5">
-                        <button onclick="openModal('clinica')" class="text-xs font-bold text-olive-800 hover:text-bulls-red transition-colors flex items-center gap-1 underline underline-offset-4">
+                    <div class="pt-4 border-t border-olive-300 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
+                        <button onclick="openModal('clinica')" class="text-sm font-bold text-olive-900 hover:text-bulls-red transition-colors flex items-center gap-1.5 underline underline-offset-4">
                             <span>Ver detalhes da criação</span>
-                            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
                         </button>
-                        <a href="#contato" class="px-4 py-2 rounded-full bg-olive text-cream-50 text-xs font-bold hover:bg-bulls-black transition-all flex items-center justify-center gap-1.5">
+                        <a href="#contato" class="px-5 py-2.5 rounded-full bg-olive text-cream-50 text-xs font-bold hover:bg-bulls-black transition-all flex items-center justify-center gap-1.5">
                             <span>Quero um Site Deste Formato</span>
                         </a>
                     </div>
@@ -559,74 +611,102 @@
         </section>
 
         <!-- Simulador de Proposta para WhatsApp -->
-        <section id="orcamento-calc" class="py-12 bg-cream-200/50 border-y border-olive-200">
+        <section id="orcamento-calc" class="py-14 sm:py-16 bg-cream-200/80 border-y border-olive-300">
             <div class="max-w-4xl mx-auto px-5 sm:px-6">
-                <div class="text-center mb-6">
-                    <span class="text-xs font-mono font-bold uppercase tracking-widest text-bulls-red">// PLANEAMENTO DIRETO</span>
-                    <h2 class="font-display font-black text-2xl sm:text-3xl text-olive-900 mt-1">Simulador Rápido de Projeto</h2>
-                    <p class="text-xs sm:text-sm text-olive-700 mt-1">Selecione o seu segmento para iniciar uma conversa estruturada diretamente no WhatsApp.</p>
+                <div class="text-center mb-8">
+                    <span class="text-xs font-mono font-bold uppercase tracking-widest text-bulls-red">// PLANEJAMENTO DIRETO</span>
+                    <h2 class="font-display font-black text-2xl sm:text-3xl md:text-4xl text-olive-950 mt-1">Simulador Rápido de Projeto</h2>
+                    <p class="text-sm sm:text-base text-olive-800 mt-2 font-medium">Selecione o seu segmento para iniciar uma conversa estruturada diretamente no WhatsApp.</p>
                 </div>
 
-                <div class="bg-cream-50 rounded-2xl p-5 sm:p-6 border border-olive-300 custom-card-shadow">
-                    <p class="text-xs font-mono font-bold text-olive-800 uppercase tracking-wide mb-2">1. Qual é o seu segmento?</p>
-                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 mb-4">
+                <div class="bg-cream-50 rounded-3xl p-6 sm:p-8 border border-olive-300 custom-card-shadow">
+                    <p class="text-xs font-mono font-bold text-olive-950 uppercase tracking-wide mb-3">1. Qual é o seu segmento de negócio?</p>
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5 mb-6">
                         <label class="cursor-pointer">
                             <input type="radio" name="projectNiche" value="Médico / Psicólogo / Saúde" class="peer hidden" checked>
-                            <div class="p-2 rounded-xl border-2 border-olive-200 peer-checked:border-bulls-red peer-checked:bg-bulls-red/5 transition-all text-center">
-                                <span class="text-sm block">🩺</span>
-                                <span class="font-bold text-xs text-olive-900">Médico / Saúde</span>
+                            <div class="p-3 rounded-xl border-2 border-olive-300 peer-checked:border-bulls-red peer-checked:bg-bulls-red/10 transition-all text-center">
+                                <span class="text-lg block mb-1">🩺</span>
+                                <span class="font-bold text-xs sm:text-sm text-olive-950">Médico / Saúde</span>
                             </div>
                         </label>
                         <label class="cursor-pointer">
-                            <input type="radio" name="projectNiche" value="Estética / Beleza / Cuidado Pessoal" class="peer hidden">
-                            <div class="p-2 rounded-xl border-2 border-olive-200 peer-checked:border-bulls-red peer-checked:bg-bulls-red/5 transition-all text-center">
-                                <span class="text-sm block">✨</span>
-                                <span class="font-bold text-xs text-olive-900">Estética / Beleza</span>
+                            <input type="radio" name="projectNiche" value="Estética / Beleza / Bem-Estar" class="peer hidden">
+                            <div class="p-3 rounded-xl border-2 border-olive-300 peer-checked:border-bulls-red peer-checked:bg-bulls-red/10 transition-all text-center">
+                                <span class="text-lg block mb-1">✨</span>
+                                <span class="font-bold text-xs sm:text-sm text-olive-950">Estética / Beleza</span>
                             </div>
                         </label>
                         <label class="cursor-pointer">
                             <input type="radio" name="projectNiche" value="Produtos de Limpeza / Distribuidora" class="peer hidden">
-                            <div class="p-2 rounded-xl border-2 border-olive-200 peer-checked:border-bulls-red peer-checked:bg-bulls-red/5 transition-all text-center">
-                                <span class="text-sm block">🧼</span>
-                                <span class="font-bold text-xs text-olive-900">Prod. Limpeza</span>
+                            <div class="p-3 rounded-xl border-2 border-olive-300 peer-checked:border-bulls-red peer-checked:bg-bulls-red/10 transition-all text-center">
+                                <span class="text-lg block mb-1">🧼</span>
+                                <span class="font-bold text-xs sm:text-sm text-olive-950">Prod. Limpeza</span>
                             </div>
                         </label>
                         <label class="cursor-pointer">
                             <input type="radio" name="projectNiche" value="Restaurante / Gastronomia / Delivery" class="peer hidden">
-                            <div class="p-2 rounded-xl border-2 border-olive-200 peer-checked:border-bulls-red peer-checked:bg-bulls-red/5 transition-all text-center">
-                                <span class="text-sm block">🍔</span>
-                                <span class="font-bold text-xs text-olive-900">Restaurantes</span>
+                            <div class="p-3 rounded-xl border-2 border-olive-300 peer-checked:border-bulls-red peer-checked:bg-bulls-red/10 transition-all text-center">
+                                <span class="text-lg block mb-1">🍔</span>
+                                <span class="font-bold text-xs sm:text-sm text-olive-950">Restaurantes</span>
+                            </div>
+                        </label>
+                        <label class="cursor-pointer">
+                            <input type="radio" name="projectNiche" value="Influenciador / Mentor / Conteúdo" class="peer hidden">
+                            <div class="p-3 rounded-xl border-2 border-olive-300 peer-checked:border-bulls-red peer-checked:bg-bulls-red/10 transition-all text-center">
+                                <span class="text-lg block mb-1">🎬</span>
+                                <span class="font-bold text-xs sm:text-sm text-olive-950">Influenciadores</span>
+                            </div>
+                        </label>
+                        <label class="cursor-pointer">
+                            <input type="radio" name="projectNiche" value="Loja de Roupas / Streetwear" class="peer hidden">
+                            <div class="p-3 rounded-xl border-2 border-olive-300 peer-checked:border-bulls-red peer-checked:bg-bulls-red/10 transition-all text-center">
+                                <span class="text-lg block mb-1">👕</span>
+                                <span class="font-bold text-xs sm:text-sm text-olive-950">Lojas de Roupas</span>
+                            </div>
+                        </label>
+                        <label class="cursor-pointer">
+                            <input type="radio" name="projectNiche" value="Psicologia / Terapias" class="peer hidden">
+                            <div class="p-3 rounded-xl border-2 border-olive-300 peer-checked:border-bulls-red peer-checked:bg-bulls-red/10 transition-all text-center">
+                                <span class="text-lg block mb-1">🧠</span>
+                                <span class="font-bold text-xs sm:text-sm text-olive-950">Psicólogos</span>
+                            </div>
+                        </label>
+                        <label class="cursor-pointer">
+                            <input type="radio" name="projectNiche" value="Negócios Locais / Geral" class="peer hidden">
+                            <div class="p-3 rounded-xl border-2 border-olive-300 peer-checked:border-bulls-red peer-checked:bg-bulls-red/10 transition-all text-center">
+                                <span class="text-lg block mb-1">🏢</span>
+                                <span class="font-bold text-xs sm:text-sm text-olive-950">Negócios Locais</span>
                             </div>
                         </label>
                     </div>
 
-                    <p class="text-xs font-mono font-bold text-olive-800 uppercase tracking-wide mb-2">2. Qual formato pretende?</p>
-                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5 mb-4">
+                    <p class="text-xs font-mono font-bold text-olive-950 uppercase tracking-wide mb-3">2. Qual formato de site você precisa?</p>
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-6">
                         <label class="cursor-pointer">
                             <input type="radio" name="projectType" value="Landing Page de Alta Conversão" class="peer hidden" checked>
-                            <div class="p-3 rounded-xl border-2 border-olive-200 peer-checked:border-bulls-red peer-checked:bg-bulls-red/5 transition-all text-center">
-                                <span class="font-display font-bold text-xs sm:text-sm block text-olive-900">Landing Page</span>
-                                <span class="text-[10.5px] text-olive-600 block mt-0.5">Página única focada em conversão</span>
+                            <div class="p-4 rounded-xl border-2 border-olive-300 peer-checked:border-bulls-red peer-checked:bg-bulls-red/10 transition-all text-center">
+                                <span class="font-display font-bold text-sm sm:text-base block text-olive-950">Landing Page</span>
+                                <span class="text-xs text-olive-700 block mt-1">Página única focada em conversão</span>
                             </div>
                         </label>
                         <label class="cursor-pointer">
-                            <input type="radio" name="projectType" value="Loja Virtual / Catálogo de Produtos" class="peer hidden">
-                            <div class="p-3 rounded-xl border-2 border-olive-200 peer-checked:border-bulls-red peer-checked:bg-bulls-red/5 transition-all text-center">
-                                <span class="font-display font-bold text-xs sm:text-sm block text-olive-900">Loja / Catálogo</span>
-                                <span class="text-[10.5px] text-olive-600 block mt-0.5">Apresentação e venda direta</span>
+                            <input type="radio" name="projectType" value="Loja de Roupas / Catálogo de Produtos" class="peer hidden">
+                            <div class="p-4 rounded-xl border-2 border-olive-300 peer-checked:border-bulls-red peer-checked:bg-bulls-red/10 transition-all text-center">
+                                <span class="font-display font-bold text-sm sm:text-base block text-olive-950">Loja de Roupas / Catálogo</span>
+                                <span class="text-xs text-olive-700 block mt-1">Apresentação e venda direta</span>
                             </div>
                         </label>
                         <label class="cursor-pointer">
                             <input type="radio" name="projectType" value="Site Institucional & Apresentação" class="peer hidden">
-                            <div class="p-3 rounded-xl border-2 border-olive-200 peer-checked:border-bulls-red peer-checked:bg-bulls-red/5 transition-all text-center">
-                                <span class="font-display font-bold text-xs sm:text-sm block text-olive-900">Site Institucional</span>
-                                <span class="text-[10.5px] text-olive-600 block mt-0.5">Credibilidade e autoridade</span>
+                            <div class="p-4 rounded-xl border-2 border-olive-300 peer-checked:border-bulls-red peer-checked:bg-bulls-red/10 transition-all text-center">
+                                <span class="font-display font-bold text-sm sm:text-base block text-olive-950">Site Institucional</span>
+                                <span class="text-xs text-olive-700 block mt-1">Credibilidade e autoridade</span>
                             </div>
                         </label>
                     </div>
 
-                    <div class="text-center mt-5">
-                        <button onclick="sendSimulatedBudget()" class="w-full sm:w-auto px-7 py-3 rounded-full bg-bulls-black text-white font-display font-bold text-sm hover:bg-bulls-red transition-all shadow flex items-center justify-center gap-2 mx-auto">
+                    <div class="text-center pt-2">
+                        <button onclick="sendSimulatedBudget()" class="w-full sm:w-auto px-8 py-4 rounded-full bg-bulls-black text-white font-display font-bold text-sm hover:bg-bulls-red transition-all shadow flex items-center justify-center gap-2.5 mx-auto">
                             <span>Enviar Proposta Para o WhatsApp</span>
                             <span>💬</span>
                         </button>
@@ -636,28 +716,28 @@
         </section>
 
         <!-- Sobre Mim -->
-        <section id="sobre" class="py-12 sm:py-16 max-w-6xl mx-auto px-5 sm:px-6">
+        <section id="sobre" class="py-14 sm:py-18 max-w-6xl mx-auto px-5 sm:px-6">
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
                 <div class="lg:col-span-5">
-                    <div class="bg-olive-800 text-cream-100 rounded-2xl p-6 border-2 border-olive-500/50 shadow-xl relative overflow-hidden">
+                    <div class="bg-olive-800 text-cream-100 rounded-3xl p-7 border-2 border-olive-500/60 shadow-xl relative overflow-hidden">
                         <div class="relative z-10">
                             <span class="text-xs font-mono text-bulls-red font-bold uppercase tracking-widest">// QUEM SOU EU</span>
-                            <h3 class="font-display font-black text-2xl text-cream-50 mt-1 mb-0.5">Fabrício Mariano</h3>
-                            <p class="font-mono text-xs text-cream-300 font-semibold mb-3.5">@marianodev • Desenvolvedor & Designer</p>
+                            <h3 class="font-display font-black text-2xl text-cream-50 mt-1 mb-1">Fabrício Mariano</h3>
+                            <p class="font-mono text-xs text-cream-300 font-bold mb-4">@marianodev • Desenvolvedor & Designer</p>
 
-                            <div class="space-y-2.5 text-xs sm:text-sm text-cream-200/90 leading-relaxed font-light">
+                            <div class="space-y-3 text-sm text-cream-100 leading-relaxed font-normal">
                                 <p>Atuo diretamente a partir de <strong>Volta Redonda - RJ</strong>, desenvolvendo plataformas e sites para clientes de todo o país.</p>
-                                <p>Foco na entrega de código moderno, páginas que carregam com velocidade no telemóvel e estruturas desenhadas especificamente para converter visitantes em contactos.</p>
+                                <p>Foco na entrega de código moderno, páginas que carregam com velocidade no celular e estruturas desenhadas especificamente para converter visitantes em contatos reais.</p>
                             </div>
 
-                            <div class="mt-5 pt-4 border-t border-olive-600 flex items-center justify-between">
+                            <div class="mt-6 pt-5 border-t border-olive-600 flex items-center justify-between">
                                 <div class="text-xs font-mono">
-                                    <span class="text-cream-400 block">BASE ATUAL</span>
-                                    <span class="font-bold text-cream-100">Volta Redonda, RJ</span>
+                                    <span class="text-cream-400 block font-medium">BASE ATUAL</span>
+                                    <span class="font-bold text-cream-100 text-sm">Volta Redonda, RJ</span>
                                 </div>
                                 <div class="text-xs font-mono text-right">
-                                    <span class="text-cream-400 block">PRAZO ÁGIL</span>
-                                    <span class="font-bold text-bulls-red">1 a 2 Dias Úteis</span>
+                                    <span class="text-cream-400 block font-medium">PRAZO ÁGIL</span>
+                                    <span class="font-bold text-bulls-red text-sm">1 a 2 Dias Úteis</span>
                                 </div>
                             </div>
                         </div>
@@ -666,61 +746,61 @@
 
                 <div class="lg:col-span-7">
                     <span class="text-xs font-mono font-bold uppercase tracking-widest text-bulls-red">// METODOLOGIA</span>
-                    <h2 class="font-display font-black text-2xl sm:text-3xl text-olive-900 mt-1 mb-3 leading-tight">
-                        Sites desenhados para valorizar o seu negócio e facilitar o contacto.
+                    <h2 class="font-display font-black text-2xl sm:text-3xl md:text-4xl text-olive-950 mt-1.5 mb-3.5 leading-tight">
+                        Sites desenhados para valorizar o seu negócio e facilitar o contato.
                     </h2>
-                    <p class="text-olive-800 text-xs sm:text-sm leading-relaxed mb-4">
-                        Cada projeto é construído sem modelos genéricos lentos, garantindo carregamento rápido, clareza nas informações e adaptação precisa a qualquer tamanho de ecrã.
+                    <p class="text-olive-900 text-sm sm:text-base leading-relaxed mb-5 font-medium">
+                        Cada projeto é construído sem modelos genéricos lentos, garantindo carregamento rápido, clareza nas informações e adaptação precisa a qualquer tamanho de tela.
                     </p>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-                        <div class="p-3 rounded-xl bg-cream-200/60 border border-olive-300 flex items-center gap-2">
-                            <span class="w-6 h-6 rounded-lg bg-bulls-red text-white flex items-center justify-center font-bold text-xs">✓</span>
-                            <span class="text-xs font-bold text-olive-900">Sem temas pesados ou bloqueios</span>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        <div class="p-3.5 rounded-2xl bg-cream-200 border border-olive-300 flex items-center gap-3">
+                            <span class="w-7 h-7 rounded-lg bg-bulls-red text-white flex items-center justify-center font-bold text-sm">✓</span>
+                            <span class="text-xs sm:text-sm font-bold text-olive-950">Sem temas pesados ou travamentos</span>
                         </div>
-                        <div class="p-3 rounded-xl bg-cream-200/60 border border-olive-300 flex items-center gap-2">
-                            <span class="w-6 h-6 rounded-lg bg-olive-700 text-cream-50 flex items-center justify-center font-bold text-xs">✓</span>
-                            <span class="text-xs font-bold text-olive-900">Contacto direto com o programador</span>
+                        <div class="p-3.5 rounded-2xl bg-cream-200 border border-olive-300 flex items-center gap-3">
+                            <span class="w-7 h-7 rounded-lg bg-olive-700 text-cream-50 flex items-center justify-center font-bold text-sm">✓</span>
+                            <span class="text-xs sm:text-sm font-bold text-olive-950">Contato direto com o desenvolvedor</span>
                         </div>
-                        <div class="p-3 rounded-xl bg-cream-200/60 border border-olive-300 flex items-center gap-2">
-                            <span class="w-6 h-6 rounded-lg bg-bulls-black text-white flex items-center justify-center font-bold text-xs">✓</span>
-                            <span class="text-xs font-bold text-olive-900">Totalmente otimizado para smartphone</span>
+                        <div class="p-3.5 rounded-2xl bg-cream-200 border border-olive-300 flex items-center gap-3">
+                            <span class="w-7 h-7 rounded-lg bg-bulls-black text-white flex items-center justify-center font-bold text-sm">✓</span>
+                            <span class="text-xs sm:text-sm font-bold text-olive-950">Totalmente otimizado para smartphone</span>
                         </div>
-                        <div class="p-3 rounded-xl bg-cream-200/60 border border-olive-300 flex items-center gap-2">
-                            <span class="w-6 h-6 rounded-lg bg-emerald-600 text-white flex items-center justify-center font-bold text-xs">✓</span>
-                            <span class="text-xs font-bold text-olive-900">Entrega rápida e estruturada</span>
+                        <div class="p-3.5 rounded-2xl bg-cream-200 border border-olive-300 flex items-center gap-3">
+                            <span class="w-7 h-7 rounded-lg bg-emerald-600 text-white flex items-center justify-center font-bold text-sm">✓</span>
+                            <span class="text-xs sm:text-sm font-bold text-olive-950">Entrega rápida e estruturada</span>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Secção de Contacto Direto -->
-        <section id="contato" class="py-12 sm:py-16 max-w-6xl mx-auto px-5 sm:px-6">
-            <div class="rounded-3xl bg-bulls-black text-cream-50 p-6 sm:p-10 border-2 border-bulls-red/40 relative overflow-hidden shadow-2xl">
+        <!-- Seção de Contato Direto -->
+        <section id="contato" class="py-14 sm:py-18 max-w-6xl mx-auto px-5 sm:px-6">
+            <div class="rounded-3xl bg-bulls-black text-cream-50 p-7 sm:p-12 border-2 border-bulls-red/50 relative overflow-hidden shadow-2xl">
                 <div class="relative z-10 max-w-2xl mx-auto text-center">
-                    <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-bulls-red/20 border border-bulls-red text-cream-100 text-xs font-mono font-bold uppercase tracking-wider mb-3">
+                    <span class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-bulls-red/20 border border-bulls-red text-cream-100 text-xs font-mono font-bold uppercase tracking-wider mb-4">
                         📍 Volta Redonda - RJ • Atendimento Aberto
                     </span>
-                    <h2 class="font-display font-black text-2xl sm:text-3xl text-cream-50 leading-tight mb-3">
+                    <h2 class="font-display font-black text-2xl sm:text-3xl md:text-4xl text-cream-50 leading-tight mb-3">
                         Pronto para criar ou renovar o seu site?
                     </h2>
-                    <p class="text-cream-200/90 text-xs sm:text-sm mb-6 leading-relaxed font-light">
+                    <p class="text-cream-200 text-sm sm:text-base mb-7 leading-relaxed font-normal">
                         Envie-me uma mensagem no WhatsApp com as suas ideias e estruturamos a solução ideal para o seu negócio.
                     </p>
 
-                    <div class="flex flex-col sm:flex-row items-center justify-center gap-3">
-                        <a href="https://wa.me/5524999629761?text=Ol%C3%A1%20Fabr%C3%ADcio%20(@marianodev),%20vi%20seu%20portfolio%20e%20gostaria%20de%20um%20or%C3%A7amento%20para%20o%20meu%20site!" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto px-7 py-3.5 rounded-full bg-bulls-red text-white font-display font-bold text-sm hover:bg-bulls-redDark shadow transition-all flex items-center justify-center gap-2">
+                    <div class="flex flex-col sm:flex-row items-center justify-center gap-3.5">
+                        <a href="https://wa.me/5524999629761?text=Ol%C3%A1%20Fabr%C3%ADcio%20(@marianodev),%20vi%20seu%20portfolio%20e%20gostaria%20de%20um%20or%C3%A7amento%20para%20o%20meu%20site!" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto px-8 py-4 rounded-full bg-bulls-red text-white font-display font-bold text-sm hover:bg-bulls-redDark shadow transition-all flex items-center justify-center gap-2">
                             <span>Falar no WhatsApp: (24) 99962-9761</span>
                         </a>
-                        <button onclick="openPDFModal()" class="w-full sm:w-auto px-6 py-3.5 rounded-full bg-olive-700 hover:bg-olive-600 text-cream-50 font-display font-bold text-sm transition-all flex items-center justify-center gap-2 shadow">
-                            <span>📄 Baixar Dossiê em PDF</span>
+                        <button onclick="openPDFModal()" class="w-full sm:w-auto px-7 py-4 rounded-full bg-olive-700 hover:bg-olive-600 text-cream-50 font-display font-bold text-sm transition-all flex items-center justify-center gap-2 shadow">
+                            <span>📄 Abrir Dossiê em PDF</span>
                         </button>
-                        <button onclick="copyPhoneToClipboard()" class="w-full sm:w-auto px-6 py-3.5 rounded-full border border-cream-200/40 text-cream-100 font-display font-semibold text-sm hover:bg-white/10 transition-all flex items-center justify-center gap-2">
+                        <button onclick="copyPhoneToClipboard()" class="w-full sm:w-auto px-7 py-4 rounded-full border-2 border-cream-200/40 text-cream-100 font-display font-bold text-sm hover:bg-white/10 transition-all flex items-center justify-center gap-2">
                             <span>Copiar Número</span>
                         </button>
                     </div>
 
-                    <p class="text-[10.5px] font-mono text-cream-300/70 mt-4">
+                    <p class="text-xs font-mono text-cream-300/80 mt-5">
                         @marianodev • Fabrício Mariano • Volta Redonda, RJ • WhatsApp: (24) 99962-9761
                     </p>
                 </div>
@@ -729,11 +809,11 @@
 
     </main>
 
-    <!-- Rodapé Oficial com Logo Sincronizada -->
-    <footer class="bg-cream-100 border-t border-olive-200 py-8">
+    <!-- Rodapé Oficial -->
+    <footer class="bg-cream-100 border-t border-olive-300 py-8">
         <div class="max-w-6xl mx-auto px-5 sm:px-6 flex flex-col md:flex-row items-center justify-between gap-4">
             <div class="flex items-center gap-3">
-                <div class="w-9 h-7 flex-shrink-0 flex items-center justify-center">
+                <div class="w-10 h-8 flex-shrink-0 flex items-center justify-center">
                     <svg viewBox="-20 0 552 512" class="w-full h-full" shape-rendering="geometricPrecision">
                         <rect x="112" y="56" width="288" height="400" rx="105" fill="#0D0D0D" stroke="#CE1141" stroke-width="6"/>
                         <path d="M 12 376 L 12 176 L 76 176 L 146 312 L 216 176 L 280 176 L 280 376 L 222 376 L 222 258 L 164 376 L 128 376 L 70 258 L 70 376 Z" fill="#FF0A54"/>
@@ -741,11 +821,11 @@
                         <path d="M 304 176 L 416 176 C 466 176 500 216 500 276 C 500 336 466 376 416 376 L 304 376 Z M 360 228 L 360 324 L 410 324 C 438 324 446 304 446 276 C 446 248 438 228 410 228 Z" fill="#FF0A54"/>
                     </svg>
                 </div>
-                <span class="font-display font-extrabold text-base text-olive-900">marianodev</span>
-                <span class="text-xs font-mono text-olive-600 ml-1">Fabrício Mariano • Volta Redonda, RJ</span>
+                <span class="font-display font-extrabold text-base text-olive-950">marianodev</span>
+                <span class="text-xs font-mono text-olive-700 ml-1 font-semibold">Fabrício Mariano • Volta Redonda, RJ</span>
             </div>
 
-            <div class="flex items-center gap-5 text-xs font-semibold text-olive-700">
+            <div class="flex items-center gap-5 text-xs font-bold text-olive-800">
                 <a href="#sobre" class="hover:text-bulls-red">Sobre</a>
                 <a href="#nichos" class="hover:text-bulls-red">Segmentos</a>
                 <a href="#servicos" class="hover:text-bulls-red">Serviços</a>
@@ -757,64 +837,335 @@
     </footer>
 
     <!-- Modal de Projetos -->
-    <div id="projectModal" class="fixed inset-0 z-50 hidden bg-black/70 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto">
-        <div class="relative w-full max-w-2xl bg-cream-50 rounded-3xl border border-olive-300 shadow-2xl p-6 my-8 text-olive-900">
-            <button onclick="closeModal()" class="absolute top-4 right-4 w-9 h-9 rounded-full bg-cream-200 hover:bg-bulls-red hover:text-white text-olive-900 flex items-center justify-center transition-colors">✕</button>
+    <div id="projectModal" class="fixed inset-0 z-50 hidden bg-black/75 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto">
+        <div class="relative w-full max-w-2xl bg-cream-50 rounded-3xl border-2 border-olive-300 shadow-2xl p-6 sm:p-8 my-8 text-olive-900">
+            <button onclick="closeModal()" class="absolute top-4 right-4 w-9 h-9 rounded-full bg-cream-200 hover:bg-bulls-red hover:text-white text-olive-950 flex items-center justify-center transition-colors font-bold text-sm">✕</button>
             <div id="modalContent"></div>
         </div>
     </div>
 
-    <!-- Modal de Dossiê Comercial em PDF -->
-    <div id="pdfModal" class="fixed inset-0 z-50 hidden bg-black/75 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto">
-        <div class="relative w-full max-w-3xl bg-cream-50 rounded-3xl border border-olive-300 shadow-2xl p-6 my-8 text-olive-900 max-h-[90vh] overflow-y-auto">
-            <button onclick="closePDFModal()" class="absolute top-4 right-4 w-9 h-9 rounded-full bg-cream-200 hover:bg-bulls-red hover:text-white text-olive-900 flex items-center justify-center transition-colors">✕</button>
-            <div class="text-center pb-4 border-b border-olive-200">
-                <span class="text-xs font-mono font-bold text-bulls-red uppercase">// PROPOSTA COMERCIAL & DOSSIÊ</span>
-                <h3 class="font-display font-black text-2xl text-olive-900 mt-1">Fabrício Mariano — @marianodev</h3>
-                <p class="text-xs font-mono text-olive-600 mt-1">Volta Redonda - RJ • WhatsApp: (24) 99962-9761</p>
+    <!-- Modal Dossiê Comercial: Estruturado em Exatamente 3 Páginas Idênticas ao PDF Oficial -->
+    <div id="pdfModal" class="fixed inset-0 z-50 hidden bg-black/85 backdrop-blur-sm flex items-center justify-center p-3 sm:p-6 overflow-y-auto">
+        <div id="pdfModalContent" class="relative w-full max-w-3xl bg-cream-100 rounded-3xl border-2 border-olive-400 shadow-2xl p-5 sm:p-8 text-olive-950 max-h-[92vh] overflow-y-auto">
+            
+            <!-- Barra de Ações Superior (Não sai na impressão) -->
+            <div class="no-print flex flex-wrap items-center justify-between pb-4 mb-6 border-b-2 border-olive-300 sticky top-0 bg-cream-100 z-30 pt-1 gap-2">
+                <div class="flex items-center gap-2">
+                    <span class="px-3 py-1 rounded-full bg-bulls-red text-white text-xs font-mono font-bold uppercase tracking-wider">
+                        📄 Dossiê Comercial Executivo • 3 Páginas
+                    </span>
+                </div>
+                <div class="flex items-center gap-2">
+                    <a href="download (1).pdf" download="Dossie_Comercial_Fabricio_Mariano.pdf" class="px-3.5 sm:px-4 py-2 rounded-full border-2 border-olive-500 text-olive-950 font-bold text-xs hover:bg-bulls-black hover:text-white transition-all shadow flex items-center gap-1.5 bg-white">
+                        <span>⬇ Baixar Arquivo PDF</span>
+                    </a>
+                    <button onclick="window.print()" class="px-4 sm:px-5 py-2 rounded-full bg-bulls-red text-white font-bold text-xs hover:bg-bulls-redDark transition-all shadow flex items-center gap-1.5">
+                        <span>🖨 Imprimir / Salvar PDF</span>
+                    </button>
+                    <button onclick="closePDFModal()" class="w-8 h-8 rounded-full bg-cream-200 hover:bg-bulls-red hover:text-white text-olive-950 flex items-center justify-center transition-colors text-sm font-bold">
+                        ✕
+                    </button>
+                </div>
             </div>
-            <div class="py-4 space-y-4 text-xs sm:text-sm text-olive-800">
-                <p><strong>Prazo de Execução:</strong> 1 a 2 dias úteis após definição de requisitos e envio de materiais.</p>
-                <p><strong>Segmentos de Atuação:</strong> Lojas virtuais e marcas de vestuário, clínicas médicas e psicólogos, estética, restaurantes e negócios locais.</p>
-            </div>
-            <div class="pt-4 border-t border-olive-200 flex flex-col sm:flex-row items-center justify-end gap-3">
-                <button onclick="closePDFModal()" class="px-5 py-2.5 rounded-full border border-olive-300 text-olive-800 font-bold text-xs hover:bg-cream-200">Fechar</button>
-                <button onclick="window.print()" class="px-5 py-2.5 rounded-full bg-olive-700 text-white font-bold text-xs hover:bg-olive-800">Imprimir / Guardar</button>
-            </div>
+
+            <!-- ================= PÁGINA 1: APRESENTAÇÃO, AUTORIDADE E PROPOSTA ================= -->
+            <section class="pdf-a4-page mb-6 pb-6 border-b border-olive-300/80 bg-white p-6 sm:p-8 rounded-2xl shadow-sm border border-olive-300">
+                <div class="text-center pb-3 border-b-2 border-bulls-red mb-4">
+                    <h3 class="font-display font-black text-2xl sm:text-3xl text-olive-950">Fabrício Mariano</h3>
+                    <div class="flex items-center justify-center gap-2 mt-1">
+                        <span class="text-sm font-mono font-bold text-bulls-red">@marianodev</span>
+                        <span class="text-olive-300">|</span>
+                        <span class="text-sm font-bold text-olive-700">Criação de Sites de Alta Performance</span>
+                    </div>
+                    <p class="text-xs font-mono text-olive-700 mt-1 font-semibold">
+                        📍 Volta Redonda - RJ • WhatsApp: (24) 99962-9761 • Atendimento a Todo o Brasil
+                    </p>
+                </div>
+
+                <div class="bg-cream-100 p-3.5 rounded-xl border border-olive-300 text-center mb-5">
+                    <span class="text-[11px] font-mono font-bold text-bulls-red uppercase block tracking-wider">
+                        DOSSIÊ COMERCIAL EXECUTIVO • PÁGINA 01 DE 03
+                    </span>
+                    <h4 class="font-display font-black text-base sm:text-lg text-olive-950 mt-0.5">
+                        Estruturas Digitais Sob Medida com Foco em Vendas no WhatsApp
+                    </h4>
+                </div>
+
+                <div class="space-y-4 text-xs sm:text-sm text-olive-900 leading-relaxed">
+                    <div>
+                        <h5 class="font-display font-bold text-sm text-olive-950 border-b border-bulls-red/40 pb-1 mb-1.5">
+                            1. Apresentação Profissional
+                        </h5>
+                        <p>
+                            Prazer, sou o <strong>Fabrício Mariano (@marianodev)</strong>. Atuo diretamente a partir de <strong>Volta Redonda - RJ</strong>, desenvolvendo sites sob medida para médicos, psicólogos, consultórios de estética, restaurantes, lojas de produtos de limpeza, influenciadores e lojas de roupas em todo o Brasil.
+                        </p>
+                        <p class="mt-1.5 font-medium">
+                            O meu compromisso principal é eliminar a perda de clientes causada por sites lentos, genéricos ou com navegação confusa no celular.
+                        </p>
+                    </div>
+
+                    <div>
+                        <h5 class="font-display font-bold text-sm text-olive-950 border-b border-bulls-red/40 pb-1 mb-1.5">
+                            2. Proposta de Valor & Pilares Técnicos
+                        </h5>
+                        <p class="mb-2">
+                            Cada plataforma é codificada nativamente, sem o uso de temas pesados ou engessados, garantindo quatro pilares fundamentais:
+                        </p>
+                        <ul class="space-y-1.5 pl-1">
+                            <li class="flex items-start gap-2">
+                                <span class="text-bulls-red font-bold">•</span>
+                                <span><strong>Abertura Instantânea no Celular (&lt; 1.0s):</strong> Código limpo e imagens otimizadas para que o cliente não desista do acesso.</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="text-bulls-red font-bold">•</span>
+                                <span><strong>Fluxo de Conversão para o WhatsApp:</strong> Disposição estratégica de botões e chamadas diretas que conduzem o visitante imediatamente ao fechamento.</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="text-bulls-red font-bold">•</span>
+                                <span><strong>Presença Estruturada no Google (SEO Local):</strong> Otimização para que a sua empresa seja localizada com facilidade nas buscas locais.</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="text-bulls-red font-bold">•</span>
+                                <span><strong>Design Responsivo e Autêntico:</strong> Identidade visual profissional adaptada perfeitamente a computadores, tablets e smartphones.</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="p-3.5 rounded-xl border border-olive-300 bg-cream-50 text-center">
+                        <p class="font-bold text-olive-950 text-xs sm:text-sm">
+                            <span class="text-bulls-red">Diferencial de Execução:</span> Atendimento direto com o desenvolvedor, sem intermediários.
+                        </p>
+                        <p class="text-xs sm:text-sm font-bold text-olive-900 mt-1">
+                            Prazo Médio de Entrega: <span class="text-bulls-red">1 a 2 dias úteis</span> após o alinhamento de requisitos.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="mt-6 pt-3 border-t border-olive-200 flex items-center justify-between text-[11px] font-mono text-olive-600">
+                    <span>Fabrício Mariano • @marianodev • Volta Redonda, RJ</span>
+                    <span>marianodev23.vercel.app</span>
+                </div>
+            </section>
+
+            <!-- ================= PÁGINA 2: MODELOS DE PROJETOS E SEGMENTOS ================= -->
+            <section class="pdf-a4-page mb-6 pb-6 border-b border-olive-300/80 bg-white p-6 sm:p-8 rounded-2xl shadow-sm border border-olive-300">
+                <div class="flex items-center justify-between pb-3 border-b-2 border-bulls-red mb-4">
+                    <div>
+                        <h4 class="font-display font-black text-xl text-olive-950">Modelos de Projetos & Segmentos Atendidos</h4>
+                        <span class="text-[11px] font-mono font-bold text-bulls-red uppercase">DOSSIÊ COMERCIAL EXECUTIVO • PÁGINA 02 DE 03</span>
+                    </div>
+                </div>
+
+                <div class="space-y-4 text-xs sm:text-sm text-olive-900 leading-relaxed">
+                    <div>
+                        <h5 class="font-display font-bold text-sm text-olive-950 border-b border-bulls-red/40 pb-1 mb-2">
+                            1. Formatos de Sites Disponíveis
+                        </h5>
+
+                        <div class="space-y-2.5">
+                            <div class="p-3 rounded-xl bg-cream-50 border border-olive-200">
+                                <strong class="text-bulls-red text-xs sm:text-sm block">A. Landing Pages de Alta Conversão:</strong>
+                                <p class="text-xs text-olive-800 mt-0.5">
+                                    Páginas de destino focadas em campanhas de tráfego pago (Meta Ads e Google Ads). Estruturadas com narrativa direta, depoimentos e botão para marcação de consultas ou orçamentos imediatos.
+                                </p>
+                                <span class="text-[11px] font-mono text-olive-700 italic block mt-1">Indicado para: Médicos, psicólogos, clínicas de estética, advogados e infoprodutos.</span>
+                            </div>
+
+                            <div class="p-3 rounded-xl bg-cream-50 border border-olive-200">
+                                <strong class="text-bulls-red text-xs sm:text-sm block">B. Lojas de Roupas & Catálogos Digitais:</strong>
+                                <p class="text-xs text-olive-800 mt-0.5">
+                                    Exposição visual limpa e veloz de produtos, separação intuitiva por categorias e fechamento direto no WhatsApp ou checkout integrado.
+                                </p>
+                                <span class="text-[11px] font-mono text-olive-700 italic block mt-1">Indicado para: Marcas de vestuário/streetwear, produtos de limpeza e distribuidoras.</span>
+                            </div>
+
+                            <div class="p-3 rounded-xl bg-cream-50 border border-olive-200">
+                                <strong class="text-bulls-red text-xs sm:text-sm block">C. Sites Institucionais Corporativos:</strong>
+                                <p class="text-xs text-olive-800 mt-0.5">
+                                    Ambiente digital para fortalecimento de marca, apresentação de corpo técnico, detalhamento de especialidades, localização geográfica e integração com mapas.
+                                </p>
+                                <span class="text-[11px] font-mono text-olive-700 italic block mt-1">Indicado para: Clínicas integradas, consultorias e empresas locais.</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h5 class="font-display font-bold text-sm text-olive-950 border-b border-bulls-red/40 pb-1 mb-2">
+                            2. Resumo Comparativo & Prazos
+                        </h5>
+
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-left text-xs border border-olive-300 rounded-lg overflow-hidden">
+                                <thead class="bg-olive-800 text-white font-mono">
+                                    <tr>
+                                        <th class="p-2 sm:p-2.5">Modelo</th>
+                                        <th class="p-2 sm:p-2.5">Objetivo Principal</th>
+                                        <th class="p-2 sm:p-2.5">Prazo Estimado</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-olive-200 bg-cream-50">
+                                    <tr>
+                                        <td class="p-2 font-bold text-olive-950">Landing Page</td>
+                                        <td class="p-2 text-olive-800">Tráfego pago e agendamentos diretos</td>
+                                        <td class="p-2 font-mono font-bold text-bulls-red">1 a 2 dias úteis</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="p-2 font-bold text-olive-950">Loja de Roupas / Catálogo</td>
+                                        <td class="p-2 text-olive-800">Apresentação de catálogo e vendas</td>
+                                        <td class="p-2 font-mono font-bold text-bulls-red">1 a 2 dias úteis</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="p-2 font-bold text-olive-950">Site Institucional</td>
+                                        <td class="p-2 text-olive-800">Autoridade de marca e busca no Google</td>
+                                        <td class="p-2 font-mono font-bold text-bulls-red">1 a 2 dias úteis</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="p-3 rounded-xl bg-cream-100 border border-olive-300">
+                        <h5 class="font-display font-bold text-xs sm:text-sm text-olive-950 mb-0.5">3. Case Ativo em Produção</h5>
+                        <p class="text-xs text-olive-800">
+                            <strong>B.R.O STREETWEAR</strong> (<a href="https://brostreet23.vercel.app" target="_blank" class="text-bulls-red underline font-mono font-bold">brostreet23.vercel.app</a>): Loja de roupas e moda urbana desenvolvida com navegação ultrarrápida no celular, fluxo simplificado de produtos e catálogo dinâmico.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="mt-6 pt-3 border-t border-olive-200 flex items-center justify-between text-[11px] font-mono text-olive-600">
+                    <span>Fabrício Mariano • @marianodev • Volta Redonda, RJ</span>
+                    <span>WhatsApp: (24) 99962-9761</span>
+                </div>
+            </section>
+
+            <!-- ================= PÁGINA 3: FLUXO DE TRABALHO E CONTRATAÇÃO ================= -->
+            <section class="pdf-a4-page bg-white p-6 sm:p-8 rounded-2xl shadow-sm border border-olive-300">
+                <div class="flex items-center justify-between pb-3 border-b-2 border-bulls-red mb-4">
+                    <div>
+                        <h4 class="font-display font-black text-xl text-olive-950">Fluxo de Trabalho & Contratação</h4>
+                        <span class="text-[11px] font-mono font-bold text-bulls-red uppercase">DOSSIÊ COMERCIAL EXECUTIVO • PÁGINA 03 DE 03</span>
+                    </div>
+                </div>
+
+                <div class="space-y-4 text-xs sm:text-sm text-olive-900 leading-relaxed">
+                    <div>
+                        <h5 class="font-display font-bold text-sm text-olive-950 border-b border-bulls-red/40 pb-1 mb-2.5">
+                            1. Como Funciona a Criação do Projeto
+                        </h5>
+                        <p class="text-xs text-olive-800 mb-2">
+                            O processo de desenvolvimento é transparente, ágil e dividido em três etapas claras:
+                        </p>
+
+                        <div class="space-y-2.5">
+                            <div class="p-3 rounded-xl bg-cream-50 border border-olive-200">
+                                <strong class="text-bulls-red font-bold text-xs sm:text-sm block">1. Etapa 1 — Alinhamento & Coleta (Dia 1):</strong>
+                                <p class="text-xs text-olive-800 mt-0.5">
+                                    Conversa direta pelo WhatsApp para entender o nicho, o público-alvo e os serviços prioritários. O cliente envia logotipo, fotos e os textos essenciais.
+                                </p>
+                            </div>
+
+                            <div class="p-3 rounded-xl bg-cream-50 border border-olive-200">
+                                <strong class="text-bulls-red font-bold text-xs sm:text-sm block">2. Etapa 2 — Construção & Aprovação (Dias 1 a 2):</strong>
+                                <p class="text-xs text-olive-800 mt-0.5">
+                                    Criação da plataforma com código moderno e disponibilização de um link provisório exclusivo para que você possa navegar, testar no celular e solicitar eventuais ajustes.
+                                </p>
+                            </div>
+
+                            <div class="p-3 rounded-xl bg-cream-50 border border-olive-200">
+                                <strong class="text-bulls-red font-bold text-xs sm:text-sm block">3. Etapa 3 — Publicação & Entrega Final (Dia 2):</strong>
+                                <p class="text-xs text-olive-800 mt-0.5">
+                                    Lançamento oficial com ligação do seu domínio personalizado (.com.br / .com), configuração de SEO para o Google e suporte técnico direto.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h5 class="font-display font-bold text-sm text-olive-950 border-b border-bulls-red/40 pb-1 mb-2.5">
+                            2. Início Imediato & Contato Direto
+                        </h5>
+                        <p class="text-xs text-olive-800 mb-3">
+                            Para solicitar uma proposta personalizada para a sua empresa ou clínica, entre em contato direto pelo WhatsApp:
+                        </p>
+
+                        <div class="p-5 rounded-2xl bg-bulls-black text-cream-50 border-2 border-bulls-red/60 text-center">
+                            <h5 class="font-display font-black text-xl text-bulls-red mb-1">Fabrício Mariano — @marianodev</h5>
+                            <p class="text-xs text-cream-200 font-mono"><strong>Localização:</strong> Volta Redonda - RJ (Atendimento Nacional)</p>
+                            <p class="text-sm text-cream-50 font-bold my-1.5">
+                                WhatsApp Direto: <span class="text-bulls-red font-mono">(24) 99962-9761</span>
+                            </p>
+                            <p class="text-xs text-cream-200 font-mono">
+                                <strong>Portfólio Oficial:</strong> <a href="https://marianodev23.vercel.app" class="text-bulls-red underline">marianodev23.vercel.app</a>
+                            </p>
+                            <p class="text-[11px] text-cream-300 mt-2 italic">
+                                Envie uma mensagem com o seu segmento para iniciarmos o alinhamento.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-6 pt-3 border-t border-olive-200 flex items-center justify-between text-[11px] font-mono text-olive-600">
+                    <span>Fim do Dossiê Comercial • Fabrício Mariano</span>
+                    <span>Volta Redonda, RJ • 2026</span>
+                </div>
+            </section>
+
         </div>
     </div>
 
-    <!-- Notificação Flutuante (Toast) -->
+    <!-- Toast Notification -->
     <div id="toastNotification" class="fixed bottom-6 right-6 z-50 transform translate-y-24 opacity-0 transition-all duration-300 bg-bulls-black text-cream-50 border border-bulls-red/50 px-5 py-3 rounded-2xl shadow-2xl flex items-center gap-3 text-xs sm:text-sm font-semibold">
-        <span class="w-2 h-2 rounded-full bg-bulls-red"></span>
+        <span class="w-2.5 h-2.5 rounded-full bg-bulls-red"></span>
         <span id="toastMsg">Notificação</span>
     </div>
 
     <script>
+        // Função de Fallback Automático para a Imagem do Hero
+        function handleImageFallback(imgElement) {
+            const possibleSources = [
+                'perfil.jpeg',
+                'perfil.png',
+                'perfil.jpg.jpg',
+                'Gemini_Generated_Image_8cxapv8cxapv8cxa_3.jpg',
+                'Gemini_Generated_Image_8cxapv8cxapv8cxa.jpg',
+                './perfil.jpg'
+            ];
+            
+            imgElement.triedSources = imgElement.triedSources || [];
+            
+            for (let src of possibleSources) {
+                if (!imgElement.triedSources.includes(src)) {
+                    imgElement.triedSources.push(src);
+                    imgElement.src = src;
+                    return;
+                }
+            }
+        }
+
         const projectsDetails = {
             bro: {
                 title: "B.R.O STREETWEAR",
                 tagline: "Mais Que Roupa. É Cultura.",
-                category: "E-Commerce & Moda Urbana",
+                category: "Lojas de Roupas & Moda Urbana",
                 location: "Desenvolvido em Volta Redonda - RJ",
                 description: "Desenvolvido com o conceito de estética autêntica para o público streetwear nacional. Otimizado para navegação mobile e fluxo de compras ágil.",
                 highlights: [
                     "Carregamento ultra-rápido de produtos e imagens",
-                    "Fluxo de compra simplificado para dispositivos móveis",
+                    "Fluxo de compra simplificado para celular",
                     "Domínio ativo em brostreet23.vercel.app"
                 ],
                 url: "https://brostreet23.vercel.app"
             },
             clinica: {
                 title: "Clínica Vita — Saúde & Procedimentos",
-                tagline: "Cuidando de Si por Inteiro.",
+                tagline: "Cuidando de Você por Inteiro.",
                 category: "Saúde • Medicina • Estética",
                 location: "Atendimento Local e Regional",
-                description: "Estrutura criada para consultórios e clínicas, com apresentação de corpo clínico e marcação simplificada de consultas via WhatsApp.",
+                description: "Estrutura criada para consultórios e clínicas, com apresentação de corpo clínico e agendamento simplificado de consultas via WhatsApp.",
                 highlights: [
-                    "Marcação de consultas direta pelo WhatsApp",
+                    "Agendamento de consultas direto pelo WhatsApp",
                     "Apresentação limpa de especialidades médicas",
-                    "Totalmente adaptado para navegação rápida no telemóvel"
+                    "Totalmente adaptado para navegação rápida no celular"
                 ],
                 url: "#"
             }
@@ -825,22 +1176,22 @@
             if (!data) return;
             const modalContainer = document.getElementById('modalContent');
             modalContainer.innerHTML = `
-                <div class="mb-4">
+                <div class="mb-5">
                     <span class="text-xs font-mono font-bold text-bulls-red uppercase">${data.category}</span>
-                    <h3 class="font-display font-black text-2xl text-olive-900 mt-1">${data.title}</h3>
-                    <p class="text-xs font-semibold text-olive-700 italic mb-2">"${data.tagline}"</p>
-                    <p class="text-xs font-mono text-olive-600 mb-3">📍 ${data.location}</p>
-                    <p class="text-xs sm:text-sm text-olive-800 leading-relaxed mb-4">${data.description}</p>
+                    <h3 class="font-display font-black text-2xl sm:text-3xl text-olive-950 mt-1">${data.title}</h3>
+                    <p class="text-sm font-semibold text-olive-800 italic mb-2">"${data.tagline}"</p>
+                    <p class="text-xs font-mono text-olive-700 mb-3">📍 ${data.location}</p>
+                    <p class="text-sm sm:text-base text-olive-900 leading-relaxed mb-4">${data.description}</p>
                 </div>
-                <div class="bg-cream-200/70 rounded-2xl p-4 border border-olive-300 mb-4">
-                    <h4 class="font-display font-bold text-xs text-olive-900 mb-2 uppercase tracking-wider">Entregas do Projeto:</h4>
-                    <ul class="space-y-1.5 text-xs text-olive-800">
+                <div class="bg-cream-200/80 rounded-2xl p-4 border border-olive-300 mb-5">
+                    <h4 class="font-display font-bold text-xs text-olive-950 mb-2.5 uppercase tracking-wider">Entregas do Projeto:</h4>
+                    <ul class="space-y-2 text-xs sm:text-sm text-olive-900">
                         ${data.highlights.map(item => `<li class="flex items-start gap-2"><span class="text-bulls-red font-bold">✓</span><span>${item}</span></li>`).join('')}
                     </ul>
                 </div>
-                <div class="flex items-center justify-end gap-3 pt-3 border-t border-olive-200">
-                    <button onclick="closeModal()" class="px-4 py-2 rounded-full border border-olive-300 text-olive-800 font-bold text-xs hover:bg-cream-200">Fechar</button>
-                    ${data.url !== '#' ? `<a href="${data.url}" target="_blank" rel="noopener noreferrer" class="px-5 py-2 rounded-full bg-bulls-red text-white font-bold text-xs hover:bg-bulls-redDark transition-all shadow">Aceder ao Site ↗</a>` : `<a href="#contato" onclick="closeModal()" class="px-5 py-2 rounded-full bg-olive text-cream-50 font-bold text-xs hover:bg-bulls-red transition-all shadow">Pedir Orçamento</a>`}
+                <div class="flex items-center justify-end gap-3 pt-4 border-t border-olive-300">
+                    <button onclick="closeModal()" class="px-5 py-2.5 rounded-full border border-olive-300 text-olive-950 font-bold text-xs hover:bg-cream-200">Fechar</button>
+                    ${data.url !== '#' ? `<a href="${data.url}" target="_blank" rel="noopener noreferrer" class="px-6 py-2.5 rounded-full bg-bulls-red text-white font-bold text-xs hover:bg-bulls-redDark transition-all shadow">Acessar Site ↗</a>` : `<a href="#contato" onclick="closeModal()" class="px-6 py-2.5 rounded-full bg-olive text-cream-50 font-bold text-xs hover:bg-bulls-red transition-all shadow">Pedir Orçamento</a>`}
                 </div>
             `;
             document.getElementById('projectModal').classList.remove('hidden');
